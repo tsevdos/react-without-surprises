@@ -1,0 +1,128 @@
+.profile-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: none;
+}
+
+.profile-container h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.75rem;
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+.profile-container h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  color: var(--color-text-primary);
+}
+
+.profile-container hr {
+  border: none;
+  height: 1px;
+  background: var(--color-border);
+  margin: 2rem 0;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 500px;
+}
+
+.form-wrapper {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.form-wrapper .profile-form {
+  flex: 1;
+  min-width: 0;
+}
+
+.form-wrapper .info-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-display {
+  margin-top: 1.5rem;
+}
+
+.profile-display h3 {
+  font-size: 1.5rem;
+  color: var(--color-accent-primary);
+  margin-bottom: 1.25rem;
+}
+
+.profile-info {
+  padding: 2rem;
+  border: 2px solid var(--color-accent-primary);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-bg-secondary) 0%, rgba(0, 217, 255, 0.03) 100%);
+  max-width: 700px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info:hover {
+  border-color: var(--color-accent-hover);
+  background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, rgba(0, 217, 255, 0.05) 100%);
+  box-shadow: 0 8px 24px rgba(0, 217, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.profile-info p {
+  margin: 1rem 0;
+  color: var(--color-text-primary);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.profile-info p:first-child {
+  margin-top: 0;
+}
+
+.profile-info p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-info strong {
+  color: var(--color-accent-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-block;
+  min-width: 140px;
+  margin-right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .form-wrapper {
+    flex-direction: column;
+  }
+  
+  .form-wrapper .profile-form,
+  .form-wrapper .info-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container h2 {
+    font-size: 1.5rem;
+  }
+  
+  .profile-info {
+    padding: 1.5rem;
+  }
+  
+  .profile-info strong {
+    min-width: 120px;
+    font-size: 0.95rem;
+  }
+}
