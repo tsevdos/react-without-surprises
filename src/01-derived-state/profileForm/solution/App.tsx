@@ -45,8 +45,8 @@ export default function App() {
         <>
             <Header
                 sectionName="Derived State"
-                title="Profile form — bad example"
-                tooltip="The application is working as expected but with poor code quality, unnecessary state updates and complicated UI."
+                title="Profile form — solution"
+                tooltip="The application is working as expected with improved code quality, optimized state management, and simplified UI."
             />
             <div className="profile-container">
                 <h2>Profile Form</h2>

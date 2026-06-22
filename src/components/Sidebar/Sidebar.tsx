@@ -8,9 +8,8 @@ type MenuItem = {
 const menuItems: MenuItem[] = [
     { id: 'profile-bad', label: 'Profile form — bad example' },
     { id: 'profile-solution', label: 'Profile form — solution' },
-    { id: 'form-exercise', label: 'Form — exercise' },
-    { id: 'leaderboard-bad', label: 'Leaderboard — bad example' },
-    { id: 'leaderboard-solution', label: 'Leaderboard — solution' },
+    { id: 'todo-app-bad', label: 'Todo app — bad example' },
+    { id: 'todo-app-solution', label: 'Todo app — solution' }
 ]
 
 type SidebarProps = {
@@ -34,13 +33,13 @@ function Sidebar({ selectedMenu, onMenuItemSelect }: SidebarProps) {
                 <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>Derived State</h2>
                     <ul className={styles.menuList}>
-                        {menuItems.map((item) => (
-                            <li key={item.id} className={styles.menuItem}>
+                        {menuItems.map(({ id, label }) => (
+                            <li key={id} className={styles.menuItem}>
                                 <a
-                                    className={`${styles.menuLink} ${selectedMenu === item.id ? styles.active : ''}`}
-                                    onClick={(e) => handleClick(e, item.id)}
+                                    className={`${styles.menuLink} ${selectedMenu === id ? styles.active : ''}`}
+                                    onClick={(e) => handleClick(e, id)}
                                 >
-                                    {item.label}
+                                    {label}
                                 </a>
                             </li>
                         ))}
