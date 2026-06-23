@@ -5,11 +5,16 @@ type MenuItem = {
     label: string;
 }
 
-const menuItems: MenuItem[] = [
+const derivedStateMenuItems: MenuItem[] = [
     { id: 'profile-bad', label: 'Profile form — bad example' },
     { id: 'profile-solution', label: 'Profile form — solution' },
     { id: 'todo-app-bad', label: 'Todo app — bad example' },
     { id: 'todo-app-solution', label: 'Todo app — solution' }
+]
+
+const propDrillingMenuItems: MenuItem[] = [
+    { id: 'app-layout-bad', label: 'App layout — bad example' },
+    { id: 'app-layout-solution', label: 'App layout — solution' },
 ]
 
 type SidebarProps = {
@@ -33,7 +38,22 @@ function Sidebar({ selectedMenu, onMenuItemSelect }: SidebarProps) {
                 <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>Derived State</h2>
                     <ul className={styles.menuList}>
-                        {menuItems.map(({ id, label }) => (
+                        {derivedStateMenuItems.map(({ id, label }) => (
+                            <li key={id} className={styles.menuItem}>
+                                <a
+                                    className={`${styles.menuLink} ${selectedMenu === id ? styles.active : ''}`}
+                                    onClick={(e) => handleClick(e, id)}
+                                >
+                                    {label}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className={styles.section}>
+                    <h2 className={styles.sectionTitle}>Prop Drilling</h2>
+                    <ul className={styles.menuList}>
+                        {propDrillingMenuItems.map(({ id, label }) => (
                             <li key={id} className={styles.menuItem}>
                                 <a
                                     className={`${styles.menuLink} ${selectedMenu === id ? styles.active : ''}`}
