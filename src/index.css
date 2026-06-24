@@ -15,14 +15,14 @@
   --color-text-primary: #e5e7eb;
   --color-text-secondary: #d1d5db;
   --color-text-muted: #9ca3af;
-  
+
   /* Typography */
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  
+
   color-scheme: dark;
-  
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -166,7 +166,7 @@ body {
   color: var(--color-accent-primary);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
-  font-family: 'Courier New', Consolas, monospace;
+  font-family: "Courier New", Consolas, monospace;
   font-size: 0.9em;
   font-weight: 600;
 }
@@ -197,4 +197,3 @@ body {
 .info-card.compact {
   padding: 1.25rem;
 }
-

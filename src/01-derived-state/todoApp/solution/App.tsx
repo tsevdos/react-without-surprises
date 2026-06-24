@@ -26,7 +26,9 @@ export default function App() {
   const homeTodos = todos.filter(({ category }) => category === "home");
 
   const toggleTodo = (title: string) => {
-    const newTodos = todos.map(todo => todo.title === title ? { ...todo, done: !todo.done } : todo);
+    const newTodos = todos.map((todo) =>
+      todo.title === title ? { ...todo, done: !todo.done } : todo,
+    );
     setTodos(newTodos);
   };
 
@@ -50,4 +52,4 @@ export default function App() {
       </div>
     </>
   );
-};
+}
