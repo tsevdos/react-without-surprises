@@ -2,8 +2,8 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import AppHeader from "../../../components/Header/Header";
-import { UserProvider, type User } from "./UserContext";
-import { AppConfigProvider, useAppConfig } from "./AppConfigContext";
+import { UserProvider, type User } from "./providers/UserContext";
+import { AppConfigProvider, useAppConfig } from "./providers/AppConfigContext";
 import "../App.css";
 
 export default function App() {
@@ -31,7 +31,7 @@ function AppContent() {
     <>
       <AppHeader
         sectionName="Prop Drilling"
-        title="App layout — bad example"
+        title="App layout — Context API solution"
         tooltip="The application is working as expected, but we can clearly see the prop drilling problem we have with all the children components."
       />
       <div className={`app-layout ${theme}`}>

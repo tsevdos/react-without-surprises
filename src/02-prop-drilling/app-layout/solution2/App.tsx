@@ -13,7 +13,7 @@ export default function App() {
     <>
       <AppHeader
         sectionName="Prop Drilling"
-        title="App layout — Zustand solution"
+        title="App layout — Global state solution"
         tooltip="The application uses Zustand stores to manage global state without prop drilling."
       />
       <div className={`app-layout ${theme}`}>

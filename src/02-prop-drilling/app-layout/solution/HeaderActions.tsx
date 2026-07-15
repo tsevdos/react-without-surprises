@@ -1,4 +1,4 @@
-import { useAppConfig } from "./AppConfigContext";
+import { useAppConfig } from "./providers/AppConfigContext";
 import Profile from "./Profile";
 
 export default function HeaderActions() {

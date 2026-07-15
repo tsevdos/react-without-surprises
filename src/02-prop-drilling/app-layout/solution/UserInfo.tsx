@@ -1,4 +1,4 @@
-import { useUser } from "./UserContext";
+import { useUser } from "./providers/UserContext";
 
 export default function UserInfo() {
   const { name, username, admin } = useUser();

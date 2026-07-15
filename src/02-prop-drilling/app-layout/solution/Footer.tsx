@@ -1,5 +1,5 @@
-import { useUser } from "./UserContext";
-import { useAppConfig } from "./AppConfigContext";
+import { useUser } from "./providers/UserContext";
+import { useAppConfig } from "./providers/AppConfigContext";
 
 export default function Footer() {
   const { name } = useUser();

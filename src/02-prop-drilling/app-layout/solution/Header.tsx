@@ -1,4 +1,4 @@
-import { useAppConfig } from "./AppConfigContext";
+import { useAppConfig } from "./providers/AppConfigContext";
 import HeaderActions from "./HeaderActions";
 
 export default function Header() {
