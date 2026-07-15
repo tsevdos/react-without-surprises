@@ -37,7 +37,7 @@ export function AppConfigProvider({ children }: AppConfigProviderProps) {
     // Static configuration
     applicationTitle: "DeliciousApp",
     version: "1.0.0",
-    companyName: "Philomath Academy",
+    companyName: "City.js 🇬🇷 workshop",
     // Dynamic settings
     theme,
     sidebarCollapsed,

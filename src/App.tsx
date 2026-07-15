@@ -7,6 +7,7 @@ import TodoAppBad from "./01-derived-state/todoApp/bad-example/App";
 import TodoAppSolution from "./01-derived-state/todoApp/solution/App";
 import AppLayoutBad from "./02-prop-drilling/app-layout/bad-example/App";
 import AppLayoutSolution from "./02-prop-drilling/app-layout/solution/App";
+import AppLayoutSolution2 from "./02-prop-drilling/app-layout/solution/App";
 
 function App() {
   const [selectedMenu, setSelectedMenu] = useState("profile-bad");
@@ -20,6 +21,7 @@ function App() {
         {selectedMenu === "todo-app-solution" && <TodoAppSolution />}
         {selectedMenu === "app-layout-bad" && <AppLayoutBad />}
         {selectedMenu === "app-layout-solution" && <AppLayoutSolution />}
+        {selectedMenu === "app-layout-solution-2" && <AppLayoutSolution2 />}
       </div>
     </Layout>
   );
