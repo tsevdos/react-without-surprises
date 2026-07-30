@@ -35,7 +35,7 @@ export default function App() {
   return (
     <>
       <Header
-        sectionName="Derived State"
+        sectionName="State Management Surprises"
         title="Todo app — solution"
         tooltip="The application is working as expected, with derived state and improved performance."
       />

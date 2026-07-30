@@ -78,8 +78,8 @@ export default function App() {
   return (
     <>
       <Header
-        sectionName="Derived State"
-        title="Todo app — bad example"
+        sectionName="State Management Surprises"
+        title="Todo app — bad version"
         tooltip="The application is working as expected, but with many unnecessary re-renders, state updates and poor code quality."
       />
       <div className="todo-app-container">

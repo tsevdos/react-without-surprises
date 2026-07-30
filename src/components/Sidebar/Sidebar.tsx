@@ -5,11 +5,11 @@ type MenuItem = {
   label: string;
 };
 
-const derivedStateMenuItems: MenuItem[] = [
-  { id: "profile-bad", label: "Profile form — bad example" },
-  { id: "profile-solution", label: "Profile form — solution" },
+const stateManagementSurprisesMenuItems: MenuItem[] = [
   { id: "todo-app-bad", label: "Todo app — bad example" },
   { id: "todo-app-solution", label: "Todo app — solution" },
+  { id: "profile-bad", label: "Profile form — bad example" },
+  { id: "profile-solution", label: "Profile form — solution" },
 ];
 
 const propDrillingMenuItems: MenuItem[] = [
@@ -37,9 +37,9 @@ function Sidebar({ selectedMenu, onMenuItemSelect }: SidebarProps) {
 
       <nav className={styles.nav}>
         <div className={styles.section}>
-          <h2 className={styles.sectionTitle}>Derived State</h2>
+          <h2 className={styles.sectionTitle}>State Management Surprises</h2>
           <ul className={styles.menuList}>
-            {derivedStateMenuItems.map(({ id, label }) => (
+            {stateManagementSurprisesMenuItems.map(({ id, label }) => (
               <li key={id} className={styles.menuItem}>
                 <a
                   className={`${styles.menuLink} ${selectedMenu === id ? styles.active : ""}`}

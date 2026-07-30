@@ -12,29 +12,33 @@ footer: "[tsevdos.me](https://tsevdos.me/) · [@tsevdos](https://twitter.com/tse
 
 # 📋 Agenda
 
-- State and Derived state
-- Prop Drilling
+- State Management Surprises
+- Effects Surprises
+- Component Design Surprises
+- Rendering & Performance Surprises
+- Data Flow & Architecture Surprises
 
----
-
-# 🎓 Workshop at CityJS Athens 2026
-
-- State and Derived state
+<!-- OLD
 - Prop Drilling
 - Complex components
 - Hooks anti-patterns
 - Duplication (when to avoid it, and when not)
 - You might not need useEffect
 - And many more...
+-->
 
 ---
 
-# 🏠 Housekeeping
+# 🏠 Format
 
-Feel free to interrupt me for:
+For each topic:
 
-- questions
-- relevant comments
+1. See the **bad version** running — predict what happens
+2. Discuss **why** it happens (tie back to React's mental model)
+3. **Refactor** it together
+4. Apply what we learned on **exercises!**
+
+##### \* Feel free to interrupt me at any time for questions or relevant comments
 
 ---
 
@@ -46,45 +50,73 @@ Feel free to interrupt me for:
 
 ---
 
-# 🧮 What is derived state?
-
-- Values **computed / calculated** from existing state
-- No need for separate `useState` — just derive it!
-- No need for `useEffect` syncs 
+# State Management Surprises
 
 ---
 
-# ✅ Why use derived state
+# State Management Surprises
 
-- Easier to understand code (single source of truth)
-- Less state (`useState`) and side effects (`useEffect`)
-- Cleaner components and UI
-- Prevents bugs from out-of-sync state
-- Better performance (fewer re-renders)
+## 🎬 Live demo: Todo app
 
 ---
 
-# 🎬 Live demo: Todo App
+# 🔍 Spot the problem
+
+- Multiple `useState` calls for values that are fully **calculable** from other state or props
+- Multiple `useEffect` that just keep the state "in sync"
+
+> Ask❓ "Can I compute this from what I already have?" — if yes, don't store it
 
 ---
 
-# 🎬 Live demo: Profile Form
+# ❌ Why is it a problem
+
+- **Two sources of truth** — stored value can drift from the calculated one
+- **Extra renders** — every derived state update triggers a re-render
+- **Dependency arrays** to maintain and keep correct by hand
+- **Bugs show up as "stale UI"** — one step behind the real data
+- **More code** to read, test, and maintain
+
+---
+
+# ✅ The Fix
+
+- **Compute / derive** the value directly in the render body
+- Wrap in `useMemo` only if the calculation is genuinely expensive
+
+---
+
+# ✅ Why the is better
+
+- **Single source of truth** — derived values are always correct by construction
+- **Impossible** to have out-of-sync state
+- **Zero extra renders** — no state cascade
+- **Zero dependency arrays** to maintain
+- **Better performance** (fewer re-renders)
+- **Less code** — often 10x fewer lines
 
 ---
 
 # 🎯 Rule of thumb
 
-> If you can calculate it from existing state/props,
-> **don't store it in state**
+> If you can calculate it, don't store it.
 
 ---
 
+# State Management Surprises
+
+## 🎬 Live demo: Profile form
+
+<!--
+
+---
 # 🕳️ What is prop drilling?
 
 - Passing props through **multiple component layers**
 - Intermediate components don't use the props — just forward them
 - Creates tight coupling and maintenance nightmares
-<br />
+  <br />
+
 ```
 App → Header → HeaderActions → UserInfo → Profile
          ↓ user    ↓ user        ↓ user      ↓ user
@@ -116,10 +148,10 @@ App → Header → HeaderActions → UserInfo → Profile
 
 # ⚖️ When to use Global state vs Props
 
-| Use Props | Global state |
-|-----------|-------------|
-| 1-2 levels deep | 3+ levels deep |
-| Few consumers | Many consumers |
+| Use Props          | Global state       |
+| ------------------ | ------------------ |
+| 1-2 levels deep    | 3+ levels deep     |
+| Few consumers      | Many consumers     |
 | Explicit data flow | Shared/global data |
 
 ---
@@ -128,6 +160,7 @@ App → Header → HeaderActions → UserInfo → Profile
 
 1. **Derive, don't store** — if it can be calculated, don't `useState` it
 2. **Prop drilling is a code smell** — fix it early before it spreads
+--->
 
 ---
 

@@ -1,4 +1,4 @@
-import { useState, type SubmitEvent } from "react";
+import { useEffect, useState, type SubmitEvent } from "react";
 import "../App.css";
 import Header from "../../../components/Header/Header";
 
@@ -16,15 +16,35 @@ type ProfileData = {
 export default function App() {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [username, setUsername] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
+  const [bmi, setBmi] = useState<number | null>(null);
   const [age, setAge] = useState("");
+  const [isAdult, setIsAdult] = useState<boolean | null>(null);
   const [submittedData, setSubmittedProfile] = useState<ProfileData | null>(null);
+  const [usernameError, setUsernameError] = useState<string | null>(null);
 
-  // derived state
-  const username = name && surname ? `${name.charAt(0)}${surname}`.toLowerCase() : "";
-  const bmi = weight && height ? Number(weight) / (Number(height) / 100) ** 2 : null;
-  const isAdult = age ? parseInt(age) >= 18 : null;
+  useEffect(() => {
+    setBmi(weight && height ? Number(weight) / (Number(height) / 100) ** 2 : null);
+  }, [weight, height]);
+
+  useEffect(() => {
+    setIsAdult(age ? parseInt(age) >= 18 : null);
+  }, [age]);
+
+  useEffect(() => {
+    // Validate username: must be first letter of name + surname, all lowercase
+    const expectedUsername = name && surname ? `${name.charAt(0)}${surname}`.toLowerCase() : "";
+
+    if (username && (name || surname) && username !== expectedUsername) {
+      setUsernameError(
+        "Username must be the first letter of the name followed by the surname, all in lowercase.",
+      );
+    } else {
+      setUsernameError(null);
+    }
+  }, [name, surname, username]);
 
   const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,9 +64,9 @@ export default function App() {
   return (
     <>
       <Header
-        sectionName="Derived State"
-        title="Profile form — solution"
-        tooltip="The application is working as expected with improved code quality, optimized state management, and simplified UI."
+        sectionName="State Management Surprises"
+        title="Profile form — bad example"
+        tooltip="The application is working as expected but with poor code quality, unnecessary state updates and complicated UI."
       />
       <div className="profile-container">
         <h2>Profile Form</h2>
@@ -72,6 +92,22 @@ export default function App() {
                 onChange={(e) => setSurname(e.target.value)}
                 className="form-input"
               />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="form-input"
+              />
+              {usernameError && (
+                <p style={{ color: "red", fontSize: "0.9em", marginTop: "0.25rem" }}>
+                  {usernameError}
+                </p>
+              )}
             </div>
 
             <div className="form-group">
