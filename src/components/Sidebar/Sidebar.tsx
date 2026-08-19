@@ -10,6 +10,7 @@ const stateManagementSurprisesMenuItems: MenuItem[] = [
   { id: "todo-app-solution", label: "Todo app — solution" },
   { id: "profile-bad", label: "Profile form — bad example" },
   { id: "profile-solution", label: "Profile form — solution" },
+  { id: "exercise-1", label: "User cart — exercise 1" },
 ];
 
 const propDrillingMenuItems: MenuItem[] = [

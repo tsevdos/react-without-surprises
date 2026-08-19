@@ -5,20 +5,24 @@ import TodoAppBad from "./01-state-management-surprises/01-todo-app/bad-version/
 import TodoAppSolution from "./01-state-management-surprises/01-todo-app/solution/App";
 import ProfileFormBad from "./01-state-management-surprises/02-profileForm/bad-version/App";
 import ProfileFormSolution from "./01-state-management-surprises/02-profileForm/solution/App";
+import UserCart from "./01-state-management-surprises/exercise/UserCart";
 import AppLayoutBad from "./02-prop-drilling/app-layout/bad-example/App";
 import AppLayoutSolution from "./02-prop-drilling/app-layout/solution/App";
 import AppLayoutSolution2 from "./02-prop-drilling/app-layout/solution2/App";
 
 function App() {
-  const [selectedMenu, setSelectedMenu] = useState("profile-bad");
+  const [selectedMenu, setSelectedMenu] = useState("exercise-1");
 
   return (
     <Layout selectedMenu={selectedMenu} onMenuItemSelect={setSelectedMenu}>
       <div className="content">
+        {/* State Management Surprises */}
         {selectedMenu === "todo-app-bad" && <TodoAppBad />}
         {selectedMenu === "todo-app-solution" && <TodoAppSolution />}
         {selectedMenu === "profile-bad" && <ProfileFormBad />}
         {selectedMenu === "profile-solution" && <ProfileFormSolution />}
+        {selectedMenu === "exercise-1" && <UserCart />}
+        {/* Prop Drilling */}
         {selectedMenu === "app-layout-bad" && <AppLayoutBad />}
         {selectedMenu === "app-layout-solution" && <AppLayoutSolution />}
         {selectedMenu === "app-layout-solution-2" && <AppLayoutSolution2 />}
