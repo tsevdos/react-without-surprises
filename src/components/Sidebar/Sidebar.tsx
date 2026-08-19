@@ -19,6 +19,11 @@ const propDrillingMenuItems: MenuItem[] = [
   { id: "app-layout-solution-2", label: "App layout — Global state solution" },
 ];
 
+const useEffectSurprisesMenuItems: MenuItem[] = [
+  { id: "comment-form-bad", label: "Comment form — bad example" },
+  { id: "comment-form-solution", label: "Comment form — solution" },
+];
+
 type SidebarProps = {
   selectedMenu: string;
   onMenuItemSelect: (id: string) => void;
@@ -56,6 +61,21 @@ function Sidebar({ selectedMenu, onMenuItemSelect }: SidebarProps) {
           <h2 className={styles.sectionTitle}>Prop Drilling</h2>
           <ul className={styles.menuList}>
             {propDrillingMenuItems.map(({ id, label }) => (
+              <li key={id} className={styles.menuItem}>
+                <a
+                  className={`${styles.menuLink} ${selectedMenu === id ? styles.active : ""}`}
+                  onClick={(e) => handleClick(e, id)}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Effects Surprises</h2>
+          <ul className={styles.menuList}>
+            {useEffectSurprisesMenuItems.map(({ id, label }) => (
               <li key={id} className={styles.menuItem}>
                 <a
                   className={`${styles.menuLink} ${selectedMenu === id ? styles.active : ""}`}

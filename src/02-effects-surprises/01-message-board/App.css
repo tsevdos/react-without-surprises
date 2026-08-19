@@ -1,0 +1,217 @@
+.comment-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.comment-container h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+.comment-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* Users Section */
+.users-section {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.user-item:hover {
+  border-color: var(--color-accent-primary);
+  background: var(--color-bg-tertiary);
+}
+
+.user-item.selected {
+  border-color: var(--color-accent-primary);
+  background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, rgba(0, 217, 255, 0.1) 100%);
+  box-shadow: 0 0 0 2px rgba(0, 217, 255, 0.2);
+}
+
+.user-avatar {
+  font-size: 1.5rem;
+}
+
+.user-name {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* Comment Form Section */
+.comment-form-section {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment-textarea {
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  resize: vertical;
+  min-height: 100px;
+  transition: all 0.2s ease;
+}
+
+.comment-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+}
+
+.comment-textarea::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.comment-button {
+  border: 2px solid var(--color-accent-primary);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-accent-primary);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.comment-button:hover {
+  background: var(--color-accent-primary);
+  color: var(--color-bg-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 217, 255, 0.3);
+}
+
+/* Comments List Section */
+.comments-list-section {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.no-comments {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comment-item {
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-primary);
+  transition: all 0.2s ease;
+}
+
+.comment-item:hover {
+  border-color: var(--color-accent-primary);
+  transform: translateX(4px);
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.comment-avatar {
+  font-size: 1.25rem;
+}
+
+.comment-author {
+  font-weight: 600;
+  color: var(--color-accent-primary);
+  font-size: 0.95rem;
+}
+
+.comment-text {
+  margin: 0;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .comment-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .users-section {
+    grid-column: span 2;
+  }
+
+  .user-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .user-item {
+    flex: 1 1 auto;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .comment-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .users-section {
+    grid-column: span 1;
+  }
+}
