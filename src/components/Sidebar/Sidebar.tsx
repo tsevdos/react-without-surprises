@@ -22,6 +22,8 @@ const propDrillingMenuItems: MenuItem[] = [
 const useEffectSurprisesMenuItems: MenuItem[] = [
   { id: "comment-form-bad", label: "Comment form — bad example" },
   { id: "comment-form-solution", label: "Comment form — solution" },
+  { id: "user-search-bad", label: "User search — bad example" },
+  { id: "user-search-solution", label: "User search — solution" },
 ];
 
 type SidebarProps = {
