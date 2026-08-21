@@ -43,7 +43,7 @@ export default function App() {
   return (
     <>
       <AppHeader
-        sectionName="Prop Drilling"
+        sectionName="State Management Surprises"
         title="App layout — bad example"
         tooltip="The application is working as expected, but we can clearly see the prop drilling problem we have with all the children components."
       />

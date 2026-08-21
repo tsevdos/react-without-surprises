@@ -30,7 +30,7 @@ function AppContent() {
   return (
     <>
       <AppHeader
-        sectionName="Prop Drilling"
+        sectionName="State Management Surprises"
         title="App layout — Context API solution"
         tooltip="The application is working as expected, but we can clearly see the prop drilling problem we have with all the children components."
       />

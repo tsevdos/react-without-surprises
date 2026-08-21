@@ -4,12 +4,12 @@ import "./App.css";
 import Layout from "./layouts/Layout";
 import TodoAppBad from "./01-state-management-surprises/01-todo-app/bad-version/App";
 import TodoAppSolution from "./01-state-management-surprises/01-todo-app/solution/App";
-import ProfileFormBad from "./01-state-management-surprises/02-profileForm/bad-version/App";
-import ProfileFormSolution from "./01-state-management-surprises/02-profileForm/solution/App";
+import ProfileFormBad from "./01-state-management-surprises/02-profile-form/bad-version/App";
+import ProfileFormSolution from "./01-state-management-surprises/02-profile-form/solution/App";
 import UserCart from "./01-state-management-surprises/03-exercise/UserCart";
-import AppLayoutBad from "./02-prop-drilling/app-layout/bad-example/App";
-import AppLayoutSolution from "./02-prop-drilling/app-layout/solution/App";
-import AppLayoutSolution2 from "./02-prop-drilling/app-layout/solution2/App";
+import AppLayoutBad from "./01-state-management-surprises/04-app-layout/bad-example/App";
+import AppLayoutSolution from "./01-state-management-surprises/04-app-layout/solution/App";
+import AppLayoutSolution2 from "./01-state-management-surprises/04-app-layout/solution2/App";
 import MessageBoardBad from "./02-effects-surprises/01-message-board/bad-version/MessageBoard";
 import MessageBoardSolution from "./02-effects-surprises/01-message-board/solution/MessageBoard";
 import UserSearchBad from "./02-effects-surprises/02-data-fetching/bad-version/App";
@@ -30,8 +30,6 @@ export default function App() {
           {selectedMenu === "profile-bad" && <ProfileFormBad />}
           {selectedMenu === "profile-solution" && <ProfileFormSolution />}
           {selectedMenu === "exercise-1" && <UserCart />}
-
-          {/* Prop Drilling */}
           {selectedMenu === "app-layout-bad" && <AppLayoutBad />}
           {selectedMenu === "app-layout-solution" && <AppLayoutSolution />}
           {selectedMenu === "app-layout-solution-2" && <AppLayoutSolution2 />}

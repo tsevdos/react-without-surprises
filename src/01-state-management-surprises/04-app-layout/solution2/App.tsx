@@ -12,7 +12,7 @@ export default function App() {
   return (
     <>
       <AppHeader
-        sectionName="Prop Drilling"
+        sectionName="State Management Surprises"
         title="App layout — Global state solution"
         tooltip="The application uses Zustand stores to manage global state without prop drilling."
       />
