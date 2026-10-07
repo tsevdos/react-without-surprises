@@ -9,13 +9,7 @@ type HeaderProps = {
   toggleSidebar: () => void;
 };
 
-export default function Header({
-  user,
-  applicationTitle,
-  theme,
-  toggleTheme,
-  toggleSidebar,
-}: HeaderProps) {
+export default function Header({ user, applicationTitle, theme, toggleTheme, toggleSidebar }: HeaderProps) {
   return (
     <header className="app-header">
       <div className="app-logo">
@@ -39,12 +33,7 @@ export default function Header({
           </li>
         </ul>
       </nav>
-      <HeaderActions
-        user={user}
-        theme={theme}
-        toggleTheme={toggleTheme}
-        toggleSidebar={toggleSidebar}
-      />
+      <HeaderActions user={user} theme={theme} toggleTheme={toggleTheme} toggleSidebar={toggleSidebar} />
     </header>
   );
 }

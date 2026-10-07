@@ -30,7 +30,7 @@ export default function App() {
   }, [weight, height]);
 
   useEffect(() => {
-    setIsAdult(age ? parseInt(age) >= 18 : null);
+    setIsAdult(age ? Number.parseInt(age, 10) >= 18 : null);
   }, [age]);
 
   useEffect(() => {
@@ -38,9 +38,7 @@ export default function App() {
     const expectedUsername = name && surname ? `${name.charAt(0)}${surname}`.toLowerCase() : "";
 
     if (username && (name || surname) && username !== expectedUsername) {
-      setUsernameError(
-        "Username must be the first letter of the name followed by the surname, all in lowercase.",
-      );
+      setUsernameError("Username must be the first letter of the name followed by the surname, all in lowercase.");
     } else {
       setUsernameError(null);
     }
@@ -53,10 +51,10 @@ export default function App() {
       name,
       surname,
       username,
-      height: height ? parseInt(height) : 0,
-      weight: weight ? parseInt(weight) : 0,
-      bmi: bmi ? parseFloat(bmi.toFixed(2)) : 0,
-      age: age ? parseInt(age) : 0,
+      height: height ? Number.parseInt(height, 10) : 0,
+      weight: weight ? Number.parseInt(weight, 10) : 0,
+      bmi: bmi ? Number.parseFloat(bmi.toFixed(2)) : 0,
+      age: age ? Number.parseInt(age, 10) : 0,
       isAdult,
     });
   };
@@ -104,9 +102,7 @@ export default function App() {
                 className="form-input"
               />
               {usernameError && (
-                <p style={{ color: "red", fontSize: "0.9em", marginTop: "0.25rem" }}>
-                  {usernameError}
-                </p>
+                <p style={{ color: "red", fontSize: "0.9em", marginTop: "0.25rem" }}>{usernameError}</p>
               )}
             </div>
 
@@ -134,13 +130,7 @@ export default function App() {
 
             <div className="form-group">
               <label htmlFor="age">Age:</label>
-              <input
-                type="text"
-                id="age"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-                className="form-input"
-              />
+              <input type="text" id="age" value={age} onChange={(e) => setAge(e.target.value)} className="form-input" />
             </div>
 
             <button type="submit" className="submit-button">
@@ -151,8 +141,7 @@ export default function App() {
           <div className="info-card">
             <h3>API Submission</h3>
             <p>
-              Upon form submission, the following <code>ProfileData</code> object must be sent to
-              the API:
+              Upon form submission, the following <code>ProfileData</code> object must be sent to the API:
             </p>
             <pre>
               {`{
@@ -169,8 +158,8 @@ export default function App() {
             <h4>Notes:</h4>
             <ul>
               <li>
-                The <code>username</code> must be the first letter of the name followed by the
-                surname, all in lowercase.
+                The <code>username</code> must be the first letter of the name followed by the surname, all in
+                lowercase.
               </li>
               <li>
                 The <code>BMI (Body Mass Index)</code> is calculated from weight and height (formula{" "}

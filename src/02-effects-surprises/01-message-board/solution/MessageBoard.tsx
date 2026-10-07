@@ -64,11 +64,7 @@ export default function MessageBoard() {
             </ul>
           </div>
 
-          <CommentForm
-            key={selectedUserId}
-            selectedUser={selectedUser}
-            onSubmit={handleAddComment}
-          />
+          <CommentForm key={selectedUserId} selectedUser={selectedUser} onSubmit={handleAddComment} />
 
           <div className="comments-list-section">
             <h2>Comments ({comments.length})</h2>
@@ -79,9 +75,7 @@ export default function MessageBoard() {
                 {comments.map((c, index) => (
                   <li key={index} className="comment-item">
                     <div className="comment-header">
-                      <span className="comment-avatar">
-                        {users.find((u) => u.id === c.userId)?.avatar}
-                      </span>
+                      <span className="comment-avatar">{users.find((u) => u.id === c.userId)?.avatar}</span>
                       <span className="comment-author">{c.userName}</span>
                     </div>
                     <p className="comment-text">{c.text}</p>

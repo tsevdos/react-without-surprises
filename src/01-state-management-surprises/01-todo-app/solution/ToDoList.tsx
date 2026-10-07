@@ -1,19 +1,19 @@
 import { type Todo } from "./App";
 
 type TodosListProps = {
-  title: string;
+  listTitle: string;
   todos: Todo[];
   toggleTodo: (title: string) => void;
 };
 
-export default function TodosList({ title, todos, toggleTodo }: TodosListProps) {
+export default function TodosList({ listTitle, todos, toggleTodo }: TodosListProps) {
   const noOftotal = todos.length;
   const noOfDone = todos.filter(({ done }) => done).length;
 
   return (
     <div className="todo-section">
       <h3>
-        {title} ({noOfDone}/{noOftotal})
+        {listTitle} ({noOfDone}/{noOftotal})
       </h3>
       <ul className="todo-list">
         {todos.map(({ title, done }) => (

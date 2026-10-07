@@ -8,12 +8,7 @@ type HeaderActionsProps = {
   toggleSidebar: () => void;
 };
 
-export default function HeaderActions({
-  user,
-  theme,
-  toggleTheme,
-  toggleSidebar,
-}: HeaderActionsProps) {
+export default function HeaderActions({ user, theme, toggleTheme, toggleSidebar }: HeaderActionsProps) {
   return (
     <div className="app-header-actions">
       <button className="app-toggle-button" onClick={toggleSidebar} title="Toggle Sidebar">

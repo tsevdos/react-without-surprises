@@ -50,7 +50,7 @@ export default function MessageBoard() {
   }, [selectedUserId]);
 
   useEffect(() => {
-    console.log("Comment added:", comments[comments.length - 1]);
+    console.log("Comment added:", comments.at(-1));
   }, [comments]);
 
   return (
@@ -111,9 +111,7 @@ export default function MessageBoard() {
                 {comments.map((c, index) => (
                   <li key={index} className="comment-item">
                     <div className="comment-header">
-                      <span className="comment-avatar">
-                        {users.find((u) => u.id === c.userId)?.avatar}
-                      </span>
+                      <span className="comment-avatar">{users.find((u) => u.id === c.userId)?.avatar}</span>
                       <span className="comment-author">{c.userName}</span>
                     </div>
                     <p className="comment-text">{c.text}</p>

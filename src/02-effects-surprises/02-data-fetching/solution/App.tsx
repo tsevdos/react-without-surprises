@@ -26,9 +26,7 @@ type UsersResponse = {
 };
 
 async function searchUsers(searchTerm: string): Promise<User[]> {
-  const response = await fetch(
-    `https://dummyjson.com/users/search?q=${encodeURIComponent(searchTerm)}`,
-  );
+  const response = await fetch(`https://dummyjson.com/users/search?q=${encodeURIComponent(searchTerm)}`);
 
   if (!response.ok) {
     throw new Error("Failed to fetch users");
@@ -65,9 +63,7 @@ export default function App() {
       <div className="pokemon-search-container">
         <div className="search-section">
           <h2>Search Users</h2>
-          <p className="search-hint">
-            Type at least 3 characters to search (e.g., "john", "emily", "michael")
-          </p>
+          <p className="search-hint">Type at least 3 characters to search (e.g., "john", "emily", "michael")</p>
           <input
             type="text"
             className="search-input"

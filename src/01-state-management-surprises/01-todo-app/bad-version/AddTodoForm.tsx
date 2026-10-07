@@ -1,10 +1,4 @@
-import {
-  useState,
-  type ChangeEvent,
-  type SubmitEvent,
-  type Dispatch,
-  type SetStateAction,
-} from "react";
+import { useState, type ChangeEvent, type SubmitEvent, type Dispatch, type SetStateAction } from "react";
 import { type Todo } from "./App";
 
 const todoCategories = [
@@ -46,12 +40,7 @@ export default function AddTodoForm({ todos, setTodos }: AddTodoFormProps) {
     <form onSubmit={addToDo} className="task-form">
       <label>Add ToDo:</label>
       <input type="text" value={toDoInput} onChange={updateInput} className="task-input" />
-      <select
-        name="category"
-        value={selectedCategory}
-        onChange={updateCategory}
-        className="task-input"
-      >
+      <select name="category" value={selectedCategory} onChange={updateCategory} className="task-input">
         {todoCategories.map(({ title, value }) => (
           <option key={value} value={value}>
             {title}

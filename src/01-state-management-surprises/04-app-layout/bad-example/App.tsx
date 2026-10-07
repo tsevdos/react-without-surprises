@@ -59,12 +59,7 @@ export default function App() {
           {!sidebarCollapsed && <Sidebar user={user} />}
           <main className="app-main-content">My main content</main>
         </div>
-        <Footer
-          user={user}
-          applicationTitle={APPLICATION_TITLE}
-          version={VERSION}
-          companyName={COMPANY_NAME}
-        />
+        <Footer user={user} applicationTitle={APPLICATION_TITLE} version={VERSION} companyName={COMPANY_NAME} />
       </div>
     </>
   );

@@ -26,9 +26,7 @@ export default function App() {
   const homeTodos = todos.filter(({ category }) => category === "home");
 
   const toggleTodo = (title: string) => {
-    const newTodos = todos.map((todo) =>
-      todo.title === title ? { ...todo, done: !todo.done } : todo,
-    );
+    const newTodos = todos.map((todo) => (todo.title === title ? { ...todo, done: !todo.done } : todo));
     setTodos(newTodos);
   };
 
@@ -45,9 +43,9 @@ export default function App() {
         <AddTodoForm todos={todos} setTodos={setTodos} />
         <hr />
         <div className="todo-sections">
-          <TodosList title="All ToDos" todos={todos} toggleTodo={toggleTodo} />
-          <TodosList title="Work ToDos" todos={workTodos} toggleTodo={toggleTodo} />
-          <TodosList title="Home ToDos" todos={homeTodos} toggleTodo={toggleTodo} />
+          <TodosList listTitle="All ToDos" todos={todos} toggleTodo={toggleTodo} />
+          <TodosList listTitle="Work ToDos" todos={workTodos} toggleTodo={toggleTodo} />
+          <TodosList listTitle="Home ToDos" todos={homeTodos} toggleTodo={toggleTodo} />
         </div>
       </div>
     </>
