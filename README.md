@@ -1,75 +1,56 @@
-# React + TypeScript + Vite
+# React Without Surprises: Building Predictable Applications
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A hands-on React workshop project about building predictable applications. It pairs runnable examples (including intentionally problematic versions and their refactors) with presentation material and a written example bank.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 20.19+ or 22.12+ (required by Vite 8)
+- npm (the repository includes `package-lock.json`)
 
-## React Compiler
+## Install and Run
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+From the repository root, install the locked dependencies and start the Vite development server:
 
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```sh
+npm i
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open the local URL printed by Vite (usually `http://localhost:5173`). The app opens on the user-search solution. Use the sidebar to switch between the interactive examples.
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+## Scripts
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
-```
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the Vite development server. |
+| `npm run build` | Type-check the project and create a production build in `dist/`. |
+| `npm run check` | Run TypeScript, Oxlint, and formatting checks. |
+| `npm run check:ts` | Run the TypeScript check. |
+| `npm run check:lint` | Run Oxlint. |
+| `npm run check:format` | Check formatting with Oxfmt. |
+| `npm run fix` | Apply lint and formatting fixes. |
+| `npm run fix:lint` | Apply Oxlint fixes. |
+| `npm run fix:format` | Format files with Oxfmt. |
+
+Run `npm run check` before committing changes. Fix commands may modify files, so review the resulting diff.
+
+## Stack and Dependencies
+
+- **React 19** and **React DOM** provide the component UI and browser rendering.
+- **TypeScript 7** supplies static type checking.
+- **Vite 8** provides the development server and production build, with the React plugin.
+- **React Compiler** is enabled through the Babel/Rolldown plugin configuration in `vite.config.ts`.
+- **TanStack Query 5** is used for server-state/data-fetching examples.
+- **Zustand 5** is used in one of the app-layout state-management solutions.
+- **Oxlint** and **Oxfmt** provide linting and formatting.
+
+The application dependencies are in `dependencies`; build and development tools are in `devDependencies` in `package.json`.
+
+<!-- ## Repository Guide
+
+- `src/01-state-management-surprises/` contains the todo, profile-form, cart exercise, and app-layout examples. `bad-version`/`bad-example` folders show the problematic approach; `solution` folders show refactors.
+- `src/02-effects-surprises/` contains message-board and data-fetching examples, with bad and solution versions.
+- `src/App.tsx` selects and displays examples inside the shared application layout. The interactive app currently includes state-management and effects examples; additional subjects are represented in the workshop material.
+- `src/03-component-surprises/notes.md` and `src/04-data-flow-architecture-surprises/notes.md` contain notes for topics under development.
+- `react-without-surprises-examples.md` is a written example bank with explanations and code snippets.
+- `presentation/presentation.md` and `presentation/react-without-surprises-slides.md` are Marp presentation sources. Marp CLI is not included in the npm scripts or project dependencies; install/use it separately if you want to render slides. -->

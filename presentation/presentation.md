@@ -2,6 +2,7 @@
 marp: true
 theme: default
 footer: "[tsevdos.me](https://tsevdos.me/) · [@tsevdos](https://twitter.com/tsevdos)"
+paginate: true
 ---
 
 <!-- ![bg right:30%](https://avatars1.githubusercontent.com/u/175707) -->
@@ -37,6 +38,10 @@ For each topic:
 2. Discuss **why** it happens (tie back to React's mental model)
 3. **Refactor** it together
 4. Apply what we learned on **exercises!**
+
+<!-- 1. **Spot it** — a rule of thumb / smell to notice
+2. **Understand it** — what's actually wrong, and why
+3. **Fix it** — the refactor, and why it's better -->
 
 ##### \* Feel free to interrupt me at any time for questions or relevant comments
 
@@ -74,7 +79,6 @@ For each topic:
 - **Two sources of truth** — stored value can drift from the calculated one
 - **Extra renders** — every derived state update triggers a re-render
 - **Dependency arrays** to maintain and keep correct by hand
-- **Bugs show up as "stale UI"** — one step behind the real data
 - **More code** to read, test, and maintain
 
 ---
@@ -82,18 +86,18 @@ For each topic:
 # ✅ The Fix
 
 - **Compute / derive** the value directly in the render body
-- Wrap in `useMemo` only if the calculation is genuinely expensive
+- Wrap in **`useMemo`** only if the calculation is genuinely expensive
 
 ---
 
-# ✅ Why the is better
+# ✅ Why this is better
 
 - **Single source of truth** — derived values are always correct by construction
 - **Impossible** to have out-of-sync state
 - **Zero extra renders** — no state cascade
 - **Zero dependency arrays** to maintain
 - **Better performance** (fewer re-renders)
-- **Less code** — often 10x fewer lines
+- **Less code** — easier to understand, easier to maintain, simplifies debugging
 
 ---
 
@@ -107,52 +111,68 @@ For each topic:
 
 ## 🎬 Live demo: Profile form
 
-<!--
+---
+
+# State Management Surprises
+
+## 🚀 Exercise: User Cart
 
 ---
-# 🕳️ What is prop drilling?
 
+# State Management Surprises
+
+## 🎬 Live demo: App Layout
+
+---
+
+# 🔍 Spot the problem
+
+- 🕳️ Prop drilling!
 - Passing props through **multiple component layers**
 - Intermediate components don't use the props — just forward them
 - Creates tight coupling and maintenance nightmares
-  <br />
+
 
 ```
 App → Header → HeaderActions → UserInfo → Profile
-         ↓ user    ↓ user        ↓ user      ↓ user
+      ↓ user    ↓ user        ↓ user      ↓ user
 ```
 
----
-
-# ⚠️ Common signs of prop drilling
-
-- Props passed through 3+ component levels
-- Components accepting props they don't use
-- Adding a new prop requires editing many files
-- Renaming a prop becomes a refactoring nightmare
-- "Why does this component need `user`?"
+> Ask❓ "Do all these intermediate components use the specific props?" — if no, use a global store
 
 ---
 
-# 🛠️ How to fix it
+# ❌ Why is it a problem
 
-- **Component composition** (children pattern)
-- **React Context API** (built-in)
-- **Global state management libraries** (Zustand, Jotai, Redux)
-
----
-
-# 🎬 Live demo: App layout
+- Intermediate components become coupled to data they neither own nor use
+- Adding or renaming a prop means updating every pass-through component
+- Component APIs grow with details unrelated to their actual responsibilities
+- The connection between the data's owner and its consumer becomes harder to follow
+- This is mainly a **maintainability** problem; prop drilling alone does not necessarily hurt performance
 
 ---
 
-# ⚖️ When to use Global state vs Props
 
-| Use Props          | Global state       |
-| ------------------ | ------------------ |
-| 1-2 levels deep    | 3+ levels deep     |
-| Few consumers      | Many consumers     |
-| Explicit data flow | Shared/global data |
+# ✅ The Fix
+
+- Put genuinely shared data in **global state** (Context API or global store)
+- Read it where it is needed with a custom hook or store selector
+- Keep props for data that belongs to a nearby component relationship
+
+---
+
+# ✅ Why this is better
+
+- Intermediate components no longer carry data they don't use
+- Consumers declare what shared data they depend on
+- Shared state has a clear owner and is easier to change
+
+
+---
+
+# 🎯 Rule of thumb
+
+> Use props for local, explicit data flow; use Context or a store when distant parts of the tree need the same shared state.
 
 ---
 
@@ -160,7 +180,16 @@ App → Header → HeaderActions → UserInfo → Profile
 
 1. **Derive, don't store** — if it can be calculated, don't `useState` it
 2. **Prop drilling is a code smell** — fix it early before it spreads
---->
+
+<!--
+# TODO!!!
+
+2. Add Prop drilling exercise
+3. Add Effects surprices section
+4. On the data-fetching - React Server Components!
+6. Maybe add a resources section ?
+-->
+
 
 ---
 
