@@ -10,6 +10,7 @@ import UserCart from "./01-state-management-surprises/03-exercise/UserCart";
 import AppLayoutBad from "./01-state-management-surprises/04-app-layout/bad-example/App";
 import AppLayoutSolution from "./01-state-management-surprises/04-app-layout/solution/App";
 import AppLayoutSolution2 from "./01-state-management-surprises/04-app-layout/solution2/App";
+import AppointmentBooking from "./01-state-management-surprises/05-exercise/AppointmentBooking";
 import MessageBoardBad from "./02-effects-surprises/01-message-board/bad-version/MessageBoard";
 import MessageBoardSolution from "./02-effects-surprises/01-message-board/solution/MessageBoard";
 import UserSearchBad from "./02-effects-surprises/02-data-fetching/bad-version/App";
@@ -33,6 +34,7 @@ export default function App() {
           {selectedMenu === "app-layout-bad" && <AppLayoutBad />}
           {selectedMenu === "app-layout-solution" && <AppLayoutSolution />}
           {selectedMenu === "app-layout-solution-2" && <AppLayoutSolution2 />}
+          {selectedMenu === "exercise-2" && <AppointmentBooking />}
 
           {/* Use Effect Surprises */}
           {selectedMenu === "comment-form-bad" && <MessageBoardBad />}

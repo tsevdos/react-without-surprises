@@ -14,6 +14,7 @@ const stateManagementSurprisesMenuItems: MenuItem[] = [
   { id: "app-layout-bad", label: "App layout — bad example" },
   { id: "app-layout-solution", label: "App layout — Context API solution" },
   { id: "app-layout-solution-2", label: "App layout — Global state solution" },
+  { id: "exercise-2", label: "Appointment booking — exercise 2" },
 ];
 
 const useEffectSurprisesMenuItems: MenuItem[] = [
