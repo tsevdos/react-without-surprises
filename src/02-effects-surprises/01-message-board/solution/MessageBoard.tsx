@@ -43,7 +43,7 @@ export default function MessageBoard() {
     <>
       <Header
         sectionName="Effects Surprises"
-        title="User Comments — solution"
+        title="Message board — solution"
         tooltip="This component is more accessible, and correctly handles the state without unnecessary effects and re-renders."
       />
       <div className="comment-container">

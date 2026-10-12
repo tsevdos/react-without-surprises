@@ -5,17 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "api": "npx json-server db.json --port 3001",
     "build": "tsc -b && vite build",
     "check": "npm run check:ts && npm run check:lint && npm run check:format",
     "check:ts": "tsc --noEmit --pretty",
     "check:lint": "oxlint",
     "check:format": "oxfmt --check",
-    "fix": "npm fix:lint && npm fix:format",
+    "fix": "npm run fix:lint && npm run fix:format",
     "fix:lint": "oxlint --fix",
     "fix:format": "oxfmt"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.104.1",
+    "json-server": "^1.0.0-beta.15",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "zustand": "^5.0.15"

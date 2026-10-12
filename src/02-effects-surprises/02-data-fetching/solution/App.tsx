@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import Header from "../../../components/Header/Header";
+import { useGet } from "./useGet";
 import "../App.css";
 
 type User = {
@@ -25,8 +25,11 @@ type UsersResponse = {
   limit: number;
 };
 
-async function searchUsers(searchTerm: string): Promise<User[]> {
-  const response = await fetch(`https://dummyjson.com/users/search?q=${encodeURIComponent(searchTerm)}`);
+async function searchUsers(searchTerm: string, signal: AbortSignal): Promise<User[]> {
+  const response = await fetch(`https://dummyjson.com/users/search?q=${encodeURIComponent(searchTerm)}`, {
+    method: "GET",
+    signal,
+  });
 
   if (!response.ok) {
     throw new Error("Failed to fetch users");
@@ -39,25 +42,17 @@ async function searchUsers(searchTerm: string): Promise<User[]> {
 export default function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const shouldSearch = searchTerm.length >= 3;
-  const {
-    status,
-    data: userList = [],
-    error,
-  } = useQuery({
-    queryKey: ["users", "search", searchTerm.toLowerCase()],
-    queryFn: () => searchUsers(searchTerm.toLowerCase()),
-    enabled: shouldSearch, // Only fetch when we have enough characters
-  });
-  const isLoading = status === "pending";
+  const name = shouldSearch ? searchTerm.toLowerCase() : null;
+  const { status, data, error } = useGet<string, User[]>(searchUsers, name);
+  const userList = status === "success" ? data : [];
   const isError = status === "error";
-  const isSuccess = status === "success";
 
   return (
     <>
       <Header
         sectionName="Effects Surprises"
-        title="User Search — solution"
-        tooltip="This component uses TanStack Query for data fetching and useDeferredValue for debouncing — clean and maintainable!"
+        title="User Search — solution (custom hook)"
+        tooltip="A custom hook tracks the status, data, and error for a GET request passed in as a promise."
       />
 
       <div className="pokemon-search-container">
@@ -78,7 +73,7 @@ export default function App() {
 
         <div className="results-section">
           {/* Loading State */}
-          {isLoading && shouldSearch && (
+          {status === "pending" && shouldSearch && (
             <div className="loading-state">
               <div className="spinner"></div>
               <p>Searching for "{searchTerm}"...</p>
@@ -94,7 +89,7 @@ export default function App() {
           )}
 
           {/* Empty State - No results found */}
-          {isSuccess && userList.length === 0 && (
+          {status === "success" && userList.length === 0 && (
             <div className="empty-state">
               <span className="empty-icon">🔍</span>
               <p>No users found matching "{searchTerm}"</p>
@@ -103,7 +98,7 @@ export default function App() {
           )}
 
           {/* Results */}
-          {isSuccess && userList.length > 0 && (
+          {status === "success" && userList.length > 0 && (
             <div className="pokemon-results">
               <p className="results-count">Found {userList.length} users</p>
               <div className="pokemon-grid">
@@ -136,7 +131,7 @@ export default function App() {
           )}
 
           {/* Initial idle state */}
-          {!isLoading && !isError && userList.length === 0 && !searchTerm && (
+          {status === "pending" && !searchTerm && (
             <div className="idle-state">
               <span className="idle-icon">👤</span>
               <p>Start typing to search for users!</p>

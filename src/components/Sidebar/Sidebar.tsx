@@ -18,10 +18,12 @@ const stateManagementSurprisesMenuItems: MenuItem[] = [
 ];
 
 const useEffectSurprisesMenuItems: MenuItem[] = [
-  { id: "comment-form-bad", label: "Comment form — bad example" },
-  { id: "comment-form-solution", label: "Comment form — solution" },
+  { id: "comment-form-bad", label: "Message board — bad example" },
+  { id: "comment-form-solution", label: "Message board — solution" },
   { id: "user-search-bad", label: "User search — bad example" },
   { id: "user-search-solution", label: "User search — solution" },
+  { id: "user-search-solution-2", label: "User search — solution 2" },
+  { id: "exercise-3", label: "Ticket desk — exercise 3" },
 ];
 
 type SidebarProps = {

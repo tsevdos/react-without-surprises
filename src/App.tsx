@@ -15,6 +15,8 @@ import MessageBoardBad from "./02-effects-surprises/01-message-board/bad-version
 import MessageBoardSolution from "./02-effects-surprises/01-message-board/solution/MessageBoard";
 import UserSearchBad from "./02-effects-surprises/02-data-fetching/bad-version/App";
 import UserSearchSolution from "./02-effects-surprises/02-data-fetching/solution/App";
+import UserSearchSolution2 from "./02-effects-surprises/02-data-fetching/solution2/App";
+import TicketDesk from "./02-effects-surprises/03-exercise/TicketDesk";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +43,8 @@ export default function App() {
           {selectedMenu === "comment-form-solution" && <MessageBoardSolution />}
           {selectedMenu === "user-search-bad" && <UserSearchBad />}
           {selectedMenu === "user-search-solution" && <UserSearchSolution />}
+          {selectedMenu === "user-search-solution-2" && <UserSearchSolution2 />}
+          {selectedMenu === "exercise-3" && <TicketDesk />}
         </div>
       </Layout>
     </QueryClientProvider>

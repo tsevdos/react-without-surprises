@@ -181,15 +181,108 @@ App → Header → HeaderActions → UserInfo → Profile
 1. **Derive, don't store** — if it can be calculated, don't `useState` it
 2. **Prop drilling is a code smell** — fix it early before it spreads
 
-<!--
-# TODO!!!
+---
 
-2. Add Prop drilling exercise
-3. Add Effects surprices section
-4. On the data-fetching - React Server Components!
-6. Maybe add a resources section ?
--->
+# Effects Surprises
 
+---
+
+# Effects Surprises
+
+## 🎬 Live demo: Message board
+
+---
+
+# 🔍 Spot the problem
+
+- A user action happens, but we handle the business logic and state updates in effects
+- Often, we split the business logic and state updates between two places: the event handler and the `useEffect`
+- This makes the component inaccessible, and it's unclear how it works and how the user can interact with it (form submission, click, etc.)
+
+---
+
+# ❌ Why is it a problem
+
+- The effect runs **after** the interaction, so the cause and the result live in different places
+- The flow becomes indirect: event → state update → re-render → effect → more state updates
+- Extra renders, and effects that can re-run for unrelated reasons (dependency changes, Strict Mode)
+- The event handler, if there is one, tells only half the story
+
+---
+
+# ✅ The Fix
+
+- Move the business logic and state updates into the event handler (`onClick`, `onSubmit`, etc.)
+- Use semantic controls for interactions: `<button>` and `<form>`, not clickable `<div>`s
+- Keep effects for synchronizing with the outside world (network, subscriptions, timers), not for reacting to user actions
+
+---
+
+# ✅ Why this is better
+
+
+- One place to look: the handler shows exactly what an interaction does
+- Less state and fewer effects (and dependency arrays) to keep track of
+- Fewer extra renders and no surprise re-runs
+- Accessibility for free: native keyboard support, focus handling, and screen reader semantics
+
+---
+
+# 🎯 Rule of thumb
+
+> Events for what users do, effects for what the world needs.
+
+---
+
+# Effects Surprises
+
+## 🎬 Live demo: Data fetching
+
+---
+
+# 🔍 Spot the problem
+
+- An HTTP request is a side effect
+- Fetching in `useEffect` means hand-writing the same boilerplate every time and quickly becomes complicated
+- It gets more complicated when you add loading and error states, abort signals, and so on
+- And you still don't get retries, mutations, revalidation, or client-side caching
+
+---
+
+# ❌ Why is it a problem
+
+- The same fetch logic can make components difficult to maintain and reason about
+- Easy to get wrong: stale data, out-of-order responses, double requests (Strict Mode)
+- Every new feature (retries, mutations, revalidation, caching) adds even more code and complexity
+
+---
+
+# ✅ The Fix
+
+- Extract the fetch logic into a custom hook, so components stop repeating it
+- Even better, use a query library such as **TanStack Query** to manage API requests
+- This makes components easier to maintain and reason about
+
+---
+
+# ✅ Why this is better
+
+- The library tracks loading, errors, and data states, with no boilerplate
+- Caching, request deduplication, retries, and revalidation are built in
+- Stale and out-of-order responses are handled for you
+- The component can focus on its business logic and remains easier to maintain
+
+---
+
+# 🎯 Rule of thumb
+
+> Don't hand-roll data fetching in effects. Use a query library, or server components if you can.
+
+---
+
+# Effects Surprises
+
+## 🚀 Exercise: Ticket desk
 
 ---
 
