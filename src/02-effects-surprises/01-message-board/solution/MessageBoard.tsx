@@ -1,5 +1,7 @@
 import { useState } from "react";
 import CommentForm from "./CommentForm";
+import Users from "./Users";
+import Comments from "./Comments";
 import Header from "../../../components/Header/Header";
 import "../App.css";
 
@@ -9,7 +11,7 @@ export type User = {
   avatar: string;
 };
 
-type Comment = {
+export type Comment = {
   userId: number;
   userName: string;
   text: string;
@@ -48,42 +50,9 @@ export default function MessageBoard() {
       />
       <div className="comment-container">
         <div className="comment-layout">
-          <div className="users-section">
-            <h2>Select User</h2>
-            <ul className="user-list">
-              {users.map((user) => (
-                <li
-                  key={user.id}
-                  className={`user-item ${selectedUserId === user.id ? "selected" : ""}`}
-                  onClick={() => setSelectedUserId(user.id)}
-                >
-                  <span className="user-avatar">{user.avatar}</span>
-                  <span className="user-name">{user.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+          <Users users={users} selectedUserId={selectedUserId} onSelect={setSelectedUserId} />
           <CommentForm key={selectedUserId} selectedUser={selectedUser} onSubmit={handleAddComment} />
-
-          <div className="comments-list-section">
-            <h2>Comments ({comments.length})</h2>
-            {comments.length === 0 ? (
-              <p className="no-comments">No comments yet. Be the first to comment!</p>
-            ) : (
-              <ul className="comments-list">
-                {comments.map((c, index) => (
-                  <li key={index} className="comment-item">
-                    <div className="comment-header">
-                      <span className="comment-avatar">{users.find((u) => u.id === c.userId)?.avatar}</span>
-                      <span className="comment-author">{c.userName}</span>
-                    </div>
-                    <p className="comment-text">{c.text}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <Comments users={users} comments={comments} />
         </div>
       </div>
     </>

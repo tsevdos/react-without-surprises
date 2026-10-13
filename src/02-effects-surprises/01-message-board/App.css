@@ -27,7 +27,7 @@
   padding: 1.5rem;
 }
 
-.user-list {
+.comment-container .user-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -140,7 +140,7 @@
   padding: 1rem 0;
 }
 
-.comments-list {
+.comment-container .comments-list {
   list-style: none;
   padding: 0;
   margin: 0;

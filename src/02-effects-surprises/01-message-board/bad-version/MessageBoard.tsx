@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import Header from "../../../components/Header/Header";
+import Users from "./Users";
+import CommentForm from "./CommentForm";
+import Comments from "./Comments";
 import "../App.css";
 
-type User = {
+export type User = {
   id: number;
   name: string;
   avatar: string;
 };
 
-type Comment = {
+export type Comment = {
   userId: number;
   userName: string;
   text: string;
@@ -46,10 +49,6 @@ export default function MessageBoard() {
   }, [submitted, comment, selectedUserId, selectedUser.name, comments]);
 
   useEffect(() => {
-    setComment("");
-  }, [selectedUserId]);
-
-  useEffect(() => {
     console.log("Comment added:", comments.at(-1));
   }, [comments]);
 
@@ -62,64 +61,14 @@ export default function MessageBoard() {
       />
       <div className="comment-container">
         <div className="comment-layout">
-          <div className="users-section">
-            <h2>Select User</h2>
-            <ul className="user-list">
-              {users.map((user) => (
-                <li
-                  key={user.id}
-                  className={`user-item ${selectedUserId === user.id ? "selected" : ""}`}
-                  onClick={() => setSelectedUserId(user.id)}
-                >
-                  <span className="user-avatar">{user.avatar}</span>
-                  <span className="user-name">{user.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="comment-form-section">
-            <h2>
-              Leave a Comment as {selectedUser.avatar} {selectedUser.name}
-            </h2>
-            <form
-              className="comment-form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
-            >
-              <textarea
-                className="comment-textarea"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="Write your comment here..."
-                rows={4}
-              />
-              <button type="submit" className="comment-button">
-                Submit Comment
-              </button>
-            </form>
-          </div>
-
-          <div className="comments-list-section">
-            <h2>Comments ({comments.length})</h2>
-            {comments.length === 0 ? (
-              <p className="no-comments">No comments yet. Be the first to comment!</p>
-            ) : (
-              <ul className="comments-list">
-                {comments.map((c, index) => (
-                  <li key={index} className="comment-item">
-                    <div className="comment-header">
-                      <span className="comment-avatar">{users.find((u) => u.id === c.userId)?.avatar}</span>
-                      <span className="comment-author">{c.userName}</span>
-                    </div>
-                    <p className="comment-text">{c.text}</p>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <Users users={users} selectedUserId={selectedUserId} onSelect={setSelectedUserId} />
+          <CommentForm
+            selectedUser={selectedUser}
+            comment={comment}
+            onCommentChange={setComment}
+            onSubmit={() => setSubmitted(true)}
+          />
+          <Comments users={users} comments={comments} />
         </div>
       </div>
     </>
