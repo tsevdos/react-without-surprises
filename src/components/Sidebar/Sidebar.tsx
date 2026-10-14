@@ -26,6 +26,14 @@ const useEffectSurprisesMenuItems: MenuItem[] = [
   { id: "exercise-3", label: "Ticket desk — exercise 3" },
 ];
 
+const componentSurprisesMenuItems: MenuItem[] = [
+  { id: "memo-bad", label: "Memoization — bad example" },
+  { id: "memo-manual", label: "Memoization — manual solution" },
+  { id: "memo-compiler", label: "Memoization — React Compiler" },
+  { id: "suspense-bad", label: "Suspense — bad example" },
+  { id: "suspense-solution", label: "Suspense — solution" },
+];
+
 type SidebarProps = {
   selectedMenu: string;
   onMenuItemSelect: (id: string) => void;
@@ -63,6 +71,21 @@ function Sidebar({ selectedMenu, onMenuItemSelect }: SidebarProps) {
           <h2 className={styles.sectionTitle}>Effects Surprises</h2>
           <ul className={styles.menuList}>
             {useEffectSurprisesMenuItems.map(({ id, label }) => (
+              <li key={id} className={styles.menuItem}>
+                <a
+                  className={`${styles.menuLink} ${selectedMenu === id ? styles.active : ""}`}
+                  onClick={(e) => handleClick(e, id)}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={styles.section}>
+          <h2 className={styles.sectionTitle}>Component Surprises</h2>
+          <ul className={styles.menuList}>
+            {componentSurprisesMenuItems.map(({ id, label }) => (
               <li key={id} className={styles.menuItem}>
                 <a
                   className={`${styles.menuLink} ${selectedMenu === id ? styles.active : ""}`}

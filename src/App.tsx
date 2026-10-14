@@ -17,6 +17,11 @@ import UserSearchBad from "./02-effects-surprises/02-data-fetching/bad-version/A
 import UserSearchSolution from "./02-effects-surprises/02-data-fetching/solution/App";
 import UserSearchSolution2 from "./02-effects-surprises/02-data-fetching/solution2/App";
 import TicketDesk from "./02-effects-surprises/03-exercise/TicketDesk";
+import MemoBad from "./03-component-surprises/01-memoization/bad-version/App";
+import MemoManual from "./03-component-surprises/01-memoization/manual-solution/App";
+import MemoCompiler from "./03-component-surprises/01-memoization/compiler-solution/App";
+import SuspenseBad from "./03-component-surprises/02-suspense/bad-version/App";
+import SuspenseSolution from "./03-component-surprises/02-suspense/solution/App";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +50,13 @@ export default function App() {
           {selectedMenu === "user-search-solution" && <UserSearchSolution />}
           {selectedMenu === "user-search-solution-2" && <UserSearchSolution2 />}
           {selectedMenu === "exercise-3" && <TicketDesk />}
+
+          {/* Component Surprises */}
+          {selectedMenu === "memo-bad" && <MemoBad />}
+          {selectedMenu === "memo-manual" && <MemoManual />}
+          {selectedMenu === "memo-compiler" && <MemoCompiler />}
+          {selectedMenu === "suspense-bad" && <SuspenseBad />}
+          {selectedMenu === "suspense-solution" && <SuspenseSolution />}
         </div>
       </Layout>
     </QueryClientProvider>
