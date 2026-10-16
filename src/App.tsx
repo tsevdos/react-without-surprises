@@ -22,6 +22,8 @@ import MemoManual from "./03-component-surprises/01-memoization/manual-solution/
 import MemoCompiler from "./03-component-surprises/01-memoization/compiler-solution/App";
 import SuspenseBad from "./03-component-surprises/02-suspense/bad-version/App";
 import SuspenseSolution from "./03-component-surprises/02-suspense/solution/App";
+import PriorityLayoutBad from "./03-component-surprises/03-rendering/bad-version/App";
+import PriorityLayoutSolution from "./03-component-surprises/03-rendering/solution/App";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +59,8 @@ export default function App() {
           {selectedMenu === "memo-compiler" && <MemoCompiler />}
           {selectedMenu === "suspense-bad" && <SuspenseBad />}
           {selectedMenu === "suspense-solution" && <SuspenseSolution />}
+          {selectedMenu === "priorities-layout-bad" && <PriorityLayoutBad />}
+          {selectedMenu === "priorities-layout-solution" && <PriorityLayoutSolution />}
         </div>
       </Layout>
     </QueryClientProvider>

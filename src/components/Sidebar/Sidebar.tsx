@@ -32,6 +32,8 @@ const componentSurprisesMenuItems: MenuItem[] = [
   { id: "memo-compiler", label: "Memoization — React Compiler" },
   { id: "suspense-bad", label: "Suspense — bad example" },
   { id: "suspense-solution", label: "Suspense — solution" },
+  { id: "priorities-layout-bad", label: "Scheduling & layout — bad example" },
+  { id: "priorities-layout-solution", label: "Scheduling & layout — solution" },
 ];
 
 type SidebarProps = {
