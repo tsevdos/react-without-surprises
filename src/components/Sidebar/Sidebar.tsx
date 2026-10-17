@@ -34,6 +34,10 @@ const componentSurprisesMenuItems: MenuItem[] = [
   { id: "suspense-solution", label: "Suspense — solution" },
   { id: "priorities-layout-bad", label: "Scheduling & layout — bad example" },
   { id: "priorities-layout-solution", label: "Scheduling & layout — solution" },
+  { id: "compound-components-bad-1", label: "Compound components — starting point" },
+  { id: "compound-components-bad-2", label: "Compound components — composition" },
+  { id: "compound-components-solution-1", label: "Compound components — solution" },
+  { id: "compound-components-solution-2", label: "Compound components — initial selection and callback" },
 ];
 
 type SidebarProps = {

@@ -24,6 +24,10 @@ import SuspenseBad from "./03-component-surprises/02-suspense/bad-version/App";
 import SuspenseSolution from "./03-component-surprises/02-suspense/solution/App";
 import PriorityLayoutBad from "./03-component-surprises/03-rendering/bad-version/App";
 import PriorityLayoutSolution from "./03-component-surprises/03-rendering/solution/App";
+import CompoundComponentsBad1 from "./03-component-surprises/04-compound-components/bad-version1/App";
+import CompoundComponentsBad2 from "./03-component-surprises/04-compound-components/bad-version2/App";
+import CompoundComponentsSolution1 from "./03-component-surprises/04-compound-components/solution1/App";
+import CompoundComponentsSolution2 from "./03-component-surprises/04-compound-components/solution2/App";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +65,10 @@ export default function App() {
           {selectedMenu === "suspense-solution" && <SuspenseSolution />}
           {selectedMenu === "priorities-layout-bad" && <PriorityLayoutBad />}
           {selectedMenu === "priorities-layout-solution" && <PriorityLayoutSolution />}
+          {selectedMenu === "compound-components-bad-1" && <CompoundComponentsBad1 />}
+          {selectedMenu === "compound-components-bad-2" && <CompoundComponentsBad2 />}
+          {selectedMenu === "compound-components-solution-1" && <CompoundComponentsSolution1 />}
+          {selectedMenu === "compound-components-solution-2" && <CompoundComponentsSolution2 />}
         </div>
       </Layout>
     </QueryClientProvider>
