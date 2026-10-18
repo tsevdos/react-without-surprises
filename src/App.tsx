@@ -28,6 +28,7 @@ import CompoundComponentsBad1 from "./03-component-surprises/04-compound-compone
 import CompoundComponentsBad2 from "./03-component-surprises/04-compound-components/bad-version2/App";
 import CompoundComponentsSolution1 from "./03-component-surprises/04-compound-components/solution1/App";
 import CompoundComponentsSolution2 from "./03-component-surprises/04-compound-components/solution2/App";
+import ProductCards from "./03-component-surprises/05-exercise/ProductCards";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,7 @@ export default function App() {
           {selectedMenu === "compound-components-bad-2" && <CompoundComponentsBad2 />}
           {selectedMenu === "compound-components-solution-1" && <CompoundComponentsSolution1 />}
           {selectedMenu === "compound-components-solution-2" && <CompoundComponentsSolution2 />}
+          {selectedMenu === "exercise-4" && <ProductCards />}
         </div>
       </Layout>
     </QueryClientProvider>

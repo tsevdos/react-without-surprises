@@ -38,6 +38,7 @@ const componentSurprisesMenuItems: MenuItem[] = [
   { id: "compound-components-bad-2", label: "Compound components — composition" },
   { id: "compound-components-solution-1", label: "Compound components — solution" },
   { id: "compound-components-solution-2", label: "Compound components — initial selection and callback" },
+  { id: "exercise-4", label: "Product cards — exercise 4" },
 ];
 
 type SidebarProps = {

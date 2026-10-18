@@ -23,6 +23,25 @@
   overflow-y: auto;
 }
 
+@media (max-width: 640px) {
+  .layout:has(:global(.product-cards-exercise)) {
+    flex-direction: column;
+  }
+
+  .layout:has(:global(.product-cards-exercise)) > .sidebar {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    height: 240px;
+  }
+
+  .layout:has(:global(.product-cards-exercise)) > .main {
+    width: 100%;
+    min-width: 0;
+    padding: 1rem;
+  }
+}
+
 /* Scrollbar styling */
 .sidebar::-webkit-scrollbar {
   width: 8px;

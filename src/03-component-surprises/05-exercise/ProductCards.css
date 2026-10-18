@@ -1,0 +1,109 @@
+.product-cards-exercise {
+  max-width: 860px;
+}
+
+.product-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-secondary);
+}
+
+.product-card-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 10 / 7;
+  object-fit: contain;
+  border-radius: 4px;
+  background: #f3f4f6;
+}
+
+.product-card .product-card-title {
+  font-size: 1.25rem;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.product-card-quantity,
+.product-card-total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.product-card-stepper {
+  display: grid;
+  grid-template-columns: repeat(3, 40px);
+  align-items: center;
+  text-align: center;
+}
+
+.product-card-stepper button {
+  width: 40px;
+  height: 40px;
+  font-size: 1.25rem;
+}
+
+.product-card-stepper output {
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.product-card button {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.product-card button:hover:not(:disabled) {
+  border-color: var(--color-accent-primary);
+}
+
+.product-card button:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 3px;
+}
+
+.product-card button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.product-card .product-card-buy {
+  min-height: 44px;
+  margin-top: auto;
+  padding: 0.65rem 1rem;
+  border-color: var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.product-cards-status {
+  min-height: 3rem;
+  margin-top: 1rem;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .product-cards-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
