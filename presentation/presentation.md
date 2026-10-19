@@ -2,10 +2,12 @@
 marp: true
 theme: default
 footer: "[tsevdos.me](https://tsevdos.me/) · [@tsevdos](https://twitter.com/tsevdos)"
-paginate: true
+style: |
+  section {
+    font-size: 200%;
+  }
+# paginate: true
 ---
-
-<!-- ![bg right:30%](https://avatars1.githubusercontent.com/u/175707) -->
 
 # React Without Surprises: <br />Building Predictable Applications
 
@@ -15,18 +17,7 @@ paginate: true
 
 - State Management Surprises
 - Effects Surprises
-- Component Design Surprises
-- Rendering & Performance Surprises
-- Data Flow & Architecture Surprises
-
-<!-- OLD
-- Prop Drilling
-- Complex components
-- Hooks anti-patterns
-- Duplication (when to avoid it, and when not)
-- You might not need useEffect
-- And many more...
--->
+- Component Surprises
 
 ---
 
@@ -39,15 +30,11 @@ For each topic:
 3. **Refactor** it together
 4. Apply what we learned on **exercises!**
 
-<!-- 1. **Spot it** — a rule of thumb / smell to notice
-2. **Understand it** — what's actually wrong, and why
-3. **Fix it** — the refactor, and why it's better -->
-
 ##### \* Feel free to interrupt me at any time for questions or relevant comments
 
 ---
 
-# 🤖 All code examples are:
+# 🤖 Workshop examples are:
 
 - Real-world (realistic) examples
 - Fully functional
@@ -67,8 +54,8 @@ For each topic:
 
 # 🔍 Spot the problem
 
-- Multiple `useState` calls for values that are fully **calculable** from other state or props
-- Multiple `useEffect` that just keep the state "in sync"
+- Multiple `useState` calls hold values that can be **calculated** from other state or props
+- Multiple `useEffect` calls that just keep the state "in sync"
 
 > Ask❓ "Can I compute this from what I already have?" — if yes, don't store it
 
@@ -77,7 +64,7 @@ For each topic:
 # ❌ Why is it a problem
 
 - **Two sources of truth** — stored value can drift from the calculated one
-- **Extra renders** — every derived state update triggers a re-render
+- **Extra re-renders** — effect-based state synchronization triggers another render
 - **Dependency arrays** to maintain and keep correct by hand
 - **More code** to read, test, and maintain
 
@@ -94,9 +81,8 @@ For each topic:
 
 - **Single source of truth** — derived values are always correct by construction
 - **Impossible** to have out-of-sync state
-- **Zero extra renders** — no state cascade
+- **Better performance** - no extra re-renders
 - **Zero dependency arrays** to maintain
-- **Better performance** (fewer re-renders)
 - **Less code** — easier to understand, easier to maintain, simplifies debugging
 
 ---
@@ -130,7 +116,7 @@ For each topic:
 - 🕳️ Prop drilling!
 - Passing props through **multiple component layers**
 - Intermediate components don't use the props — just forward them
-- Creates tight coupling and maintenance nightmares
+- Can couple intermediate components to data they do not use
 
 
 ```
@@ -138,7 +124,7 @@ App → Header → HeaderActions → UserInfo → Profile
       ↓ user    ↓ user        ↓ user      ↓ user
 ```
 
-> Ask❓ "Do all these intermediate components use the specific props?" — if no, use a global store
+> Ask❓ "Do all these intermediate components use the specific props?" — if no, consider Context or a store
 
 ---
 
@@ -176,10 +162,16 @@ App → Header → HeaderActions → UserInfo → Profile
 
 ---
 
+# State Management Surprises
+
+## 🚀 Exercise: Appointment Booking
+
+---
+
 # 🔑 Key takeaways
 
 1. **Derive, don't store** — if it can be calculated, don't `useState` it
-2. **Prop drilling is a code smell** — fix it early before it spreads
+2. **Choose the right data flow** — use props locally and Context or a store for genuinely shared state
 
 ---
 
@@ -197,7 +189,7 @@ App → Header → HeaderActions → UserInfo → Profile
 
 - A user action happens, but we handle the business logic and state updates in effects
 - Often, we split the business logic and state updates between two places: the event handler and the `useEffect`
-- This makes the component inaccessible, and it's unclear how it works and how the user can interact with it (form submission, click, etc.)
+- This not only reduce the accessibility of the component, but also splits interaction logic across event handlers and effects, making behavior harder to trace
 
 ---
 
@@ -214,7 +206,7 @@ App → Header → HeaderActions → UserInfo → Profile
 
 - Move the business logic and state updates into the event handler (`onClick`, `onSubmit`, etc.)
 - Use semantic controls for interactions: `<button>` and `<form>`, not clickable `<div>`s
-- Keep effects for synchronizing with the outside world (network, subscriptions, timers), not for reacting to user actions
+- Use effects to synchronize with external systems; keep event-specific logic in event handlers
 
 ---
 
@@ -223,14 +215,14 @@ App → Header → HeaderActions → UserInfo → Profile
 
 - One place to look: the handler shows exactly what an interaction does
 - Less state and fewer effects (and dependency arrays) to keep track of
-- Fewer extra renders and no surprise re-runs
-- Accessibility for free: native keyboard support, focus handling, and screen reader semantics
+- Interaction logic runs in response to the event, not later when dependencies change
+- Semantic controls provide built-in keyboard and screen reader behavior; labels and other accessibility details still matter
 
 ---
 
 # 🎯 Rule of thumb
 
-> Events for what users do, effects for what the world needs.
+> Events for what users do, effects for external side-effects.
 
 ---
 
@@ -252,24 +244,24 @@ App → Header → HeaderActions → UserInfo → Profile
 # ❌ Why is it a problem
 
 - The same fetch logic can make components difficult to maintain and reason about
-- Easy to get wrong: stale data, out-of-order responses, double requests (Strict Mode)
+- Easy to get wrong: stale or out-of-order data; Strict Mode's extra Effect cycle in development can expose missing cleanup and duplicate requests
 - Every new feature (retries, mutations, revalidation, caching) adds even more code and complexity
 
 ---
 
 # ✅ The Fix
 
-- Extract the fetch logic into a custom hook, so components stop repeating it
-- Even better, use a query library such as **TanStack Query** to manage API requests
+- Extract repeated fetch logic into a custom hook
+- Use a query library such as **TanStack Query** when you need caching, retries, or request deduplication
 - This makes components easier to maintain and reason about
 
 ---
 
 # ✅ Why this is better
 
-- The library tracks loading, errors, and data states, with no boilerplate
+- The library tracks loading, errors, and data states while reducing boilerplate
 - Caching, request deduplication, retries, and revalidation are built in
-- Stale and out-of-order responses are handled for you
+- Query keys and caching help keep results associated with the right request
 - The component can focus on its business logic and remains easier to maintain
 
 ---
@@ -283,6 +275,220 @@ App → Header → HeaderActions → UserInfo → Profile
 # Effects Surprises
 
 ## 🚀 Exercise: Ticket desk
+
+---
+
+# 🔑 Key takeaways
+
+1. **Events for interactions, effects for synchronization** — keep user-triggered logic in event handlers and use effects to synchronize with external systems
+2. **Keep data fetching out of component effects** — use a query library, or isolate request lifecycle logic in a custom hook
+
+---
+
+# Component Surprises
+
+---
+
+# Component Surprises
+
+## 🎬 Live demo: Memoization
+
+---
+
+# 🔍 Spot the problem
+
+- Expensive calculations can make the interface feel slow or unresponsive
+- New object and function props mean `React.memo` cannot skip rendering rows
+
+> Ask❓ "Did this value change, or did I just create a new reference?"
+
+---
+
+# ❌ Why is it a problem
+
+- Don't block the main thread
+- Memoized components still render when their props appear different
+- Adding memoization everywhere can add complexity without improving performance
+
+---
+
+# ✅ The Fix
+
+- Use the React Compiler when it is available and enabled
+- Otherwise, use performance tools such as `useMemo`, `useCallback`, or `React.memo` to address bottlenecks
+
+---
+
+# ✅ Why this is better
+
+- Expensive work and row renders can be skipped when inputs have not changed
+- Optimization stays focused on actual costs
+
+---
+
+# 🎯 Rule of thumb
+
+> Make it correct first; optimize measured work, not every component.
+
+---
+
+# Component Surprises
+
+## 🎬 Live demo: Suspense
+
+---
+
+# 🔍 Spot the problem
+
+- Each widget handles loading status and potentially missing data
+- Loading and error handling are repeated around otherwise simple UI
+
+> Ask❓ "Can the loading boundary own this state instead?"
+
+---
+
+# ❌ Why is it a problem
+
+- Every component must account for pending and failed requests
+- Repeated status checks obscure the UI's main purpose
+- One shared loading state can hide which part of the page is waiting
+
+---
+
+# ✅ The Fix
+
+- Use Suspense-enabled queries for data that can suspend
+- Place Suspense and error boundaries around the parts that should fall back independently
+
+---
+
+# ✅ Why this is better
+
+- Components can render with defined data
+- Loading and errors are handled at clear boundaries
+- Each widget can show its own fallback
+
+---
+
+# 🎯 Rule of thumb
+
+> Put loading and error handling at the boundary that matches the user experience.
+
+---
+
+# Component Surprises
+
+## 🎬 Live demo: Scheduling & layout
+
+---
+
+# 🔍 Spot the problem
+
+- Search updates and view changes can block while expensive content renders
+- The popover may shift because its position is measured after paint
+
+> Ask❓ "Is this update urgent, and does this measurement affect layout?"
+
+---
+
+# ❌ Why is it a problem
+
+- Slow work makes typing and navigation feel unresponsive
+- Post-paint measurement can show a visible layout shift
+- Using layout effects for non-visual work can block painting
+
+---
+
+# ✅ The Fix
+
+- **Scheduling:** use `useDeferredValue` to let expensive search results lag behind input, and `useTransition` for non-urgent view changes
+- **Layout:** use `useLayoutEffect` only when a measurement must happen before paint
+
+---
+
+# ✅ Why this is better
+
+- Urgent input stays responsive while results update
+- Pending view changes can be communicated to the user
+- The popover is positioned before it becomes visible
+
+---
+
+# 🎯 Rule of thumb
+
+> Keep urgent updates urgent; defer expensive work and measure layout only when needed.
+
+---
+
+# Component Surprises
+
+## 🎬 Live demo: Compound components
+
+---
+
+# 🔍 Spot the problem - bad example 1
+
+- Every tab must match a fixed data shape (for example `tabTitle`, `title`, and `content`)
+- The component controls the markup for both navigation and content
+- Consumers can’t compose arbitrary JSX or rearrange the tab structure
+
+> Ask❓ "Can you change a tab’s markup without changing the Tabs component?"
+
+---
+
+# 🔍 Spot the problem - bad example 2
+
+- Composition gives consumers more control over the markup
+- Components with complicated APIs (props, state, etc.) must be wired together correctly to make the tabs work
+- This makes the API difficult to use
+
+> Ask❓ "Which details should consumers compose, and which should Tabs coordinate?"
+
+---
+
+# ❌ Why is it a problem
+
+- Markup and tab content are less flexible when driven by a fixed data shape
+- Call sites must repeat state wiring and visibility conditions
+- Internal coordination details leak into the component API
+
+---
+
+# ✅ The Fix
+
+- Use compound components and keep the flexibility of the composition
+- Create a very simple API that will hide the complexity of the components
+- Provide more control to the external app, by exposing useful options and callbacks
+
+
+---
+
+# ✅ Why this is better
+
+- A small API with flexible markup
+- Internal coordination logic stays inside the component
+- Easier to integrate and use consistently
+
+---
+
+# 🎯 Rule of thumb
+
+> Compound components let consumers control the markup while the parent coordinates shared behavior behind a clear API.
+
+---
+
+# Component Surprises
+
+## 🚀 Exercise: Product cards
+
+---
+
+# 🔑 Key takeaways
+
+1. **Optimize with evidence** — use the compiler or targeted memoization for measured work
+2. **Choose clear boundaries** — Suspense and errors belong where the fallback should appear
+3. **Schedule intentionally** — urgent input, deferred rendering, and layout measurement are different jobs
+4. **Design for composition** — hide internal coordination behind a clear component API
 
 ---
 

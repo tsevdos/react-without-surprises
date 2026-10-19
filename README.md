@@ -23,6 +23,7 @@ Open the local URL printed by Vite (usually `http://localhost:5173`). The app op
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the Vite development server. |
+| `npm run api` | Start the mocked data API. |
 | `npm run build` | Type-check the project and create a production build in `dist/`. |
 | `npm run check` | Run TypeScript, Oxlint, and formatting checks. |
 | `npm run check:ts` | Run the TypeScript check. |

@@ -33,7 +33,54 @@
   cursor: pointer;
 }
 
-.memo-demo .memo-selected {
+.memo-demo .memo-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(220px, 0.8fr);
+  align-items: start;
+  gap: 1.5rem;
+}
+
+.memo-demo .selected-product-card {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.memo-demo .selected-product-label {
+  margin: 0 0 1rem;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.memo-demo .selected-product-card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.memo-demo .selected-product-card dl {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+}
+
+.memo-demo .selected-product-card dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.memo-demo .selected-product-card dt {
+  color: var(--color-text-secondary);
+}
+
+.memo-demo .selected-product-card dd {
+  margin: 0;
+  text-align: right;
+}
+
+.memo-demo .selected-product-empty {
   margin: 0;
   color: var(--color-text-secondary);
 }
@@ -67,4 +114,10 @@
 .memo-demo .product-meta {
   color: var(--color-text-secondary);
   font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  .memo-demo .memo-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

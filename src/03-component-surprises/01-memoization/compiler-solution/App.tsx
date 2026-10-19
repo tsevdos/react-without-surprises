@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "../../../components/Header/Header";
 import { PRODUCTS, filterProducts } from "../data";
 import ProductRow from "./ProductRow";
-import SelectedRowStyle from "../SelectedRowStyle";
+import SelectedProductCard from "../SelectedProductCard";
 import "../App.css";
 
 export default function App() {
@@ -40,9 +40,10 @@ export default function App() {
             Unrelated counter: {count}
           </button>
         </div>
-        <p className="memo-selected">Selected product: {selectedProduct?.name ?? "none"}</p>
-        <SelectedRowStyle id={selectedId} />
-        <ul className="product-list">{productRows}</ul>
+        <div className="memo-workspace">
+          <ul className="product-list">{productRows}</ul>
+          <SelectedProductCard product={selectedProduct} />
+        </div>
       </div>
     </>
   );
