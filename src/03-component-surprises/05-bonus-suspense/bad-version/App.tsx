@@ -14,7 +14,7 @@ export default function App() {
       <Header
         sectionName="Component Surprises"
         title="User dashboard — bad example (custom Loader)"
-        tooltip="Every widget calls useQuery and wraps its output in a custom <Loader status={status}> component, so each one deals with undefined data."
+        tooltip="When each part of an interface handles its own loading state, status checks and fallback UI become repetitive and can obscure the main content."
       />
 
       <div className="suspense-demo">

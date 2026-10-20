@@ -46,7 +46,7 @@ export default function MessageBoard() {
       <Header
         sectionName="Effects Surprises"
         title="Message board — solution"
-        tooltip="This component is more accessible, and correctly handles the state without unnecessary effects and re-renders."
+        tooltip="Handling user-triggered updates in their event handlers keeps cause and behavior together, while effects remain available for external synchronization."
       />
       <div className="comment-container">
         <div className="comment-layout">

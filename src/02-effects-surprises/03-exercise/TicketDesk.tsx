@@ -80,7 +80,7 @@ export default function TicketDesk() {
       <Header
         sectionName="Effects Surprises"
         title="Ticket desk — exercise 3"
-        tooltip="The application works, but it's full of effects. Which ones belong in event handlers, and which ones should be replaced by a data-fetching library?"
+        tooltip="Separate user-triggered actions from synchronization with external systems, and avoid duplicating request lifecycle management in the interface."
       />
       <div className="ticket-desk-container">
         <div className="ticket-desk-toolbar">

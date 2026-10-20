@@ -51,8 +51,8 @@ export default function App() {
     <>
       <Header
         sectionName="Effects Surprises"
-        title="User Search — solution (custom hook)"
-        tooltip="A custom hook tracks the status, data, and error for a GET request passed in as a promise."
+        title="User search — custom hook solution"
+        tooltip="Isolating request lifecycle logic in a reusable abstraction keeps components focused on their UI and makes loading and error states easier to manage."
       />
 
       <div className="pokemon-search-container">

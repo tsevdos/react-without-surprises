@@ -32,7 +32,7 @@ function AppContent() {
       <AppHeader
         sectionName="State Management Surprises"
         title="App layout — Context API solution"
-        tooltip="The application is working as expected, but we can clearly see the prop drilling problem we have with all the children components."
+        tooltip="Shared data can be made available to the components that need it without passing it through every intermediate layer."
       />
       <div className={`app-layout ${theme}`}>
         <Header />

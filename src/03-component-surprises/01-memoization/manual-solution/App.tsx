@@ -27,7 +27,7 @@ export default function App() {
       <Header
         sectionName="Component Surprises"
         title="Memoization — manual solution (React 18, useMemo + useCallback)"
-        tooltip="The style is hoisted, the callback is wrapped in useCallback, the filter in useMemo and ProductRow in React.memo. Neither the counter nor selecting a product re-renders any row."
+        tooltip="Targeted memoization can avoid repeating expensive work when its inputs have not changed. Apply optimizations where repeated work affects responsiveness."
       />
 
       <div className="memo-demo">

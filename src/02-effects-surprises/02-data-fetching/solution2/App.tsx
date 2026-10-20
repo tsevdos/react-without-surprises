@@ -56,8 +56,8 @@ export default function App() {
     <>
       <Header
         sectionName="Effects Surprises"
-        title="User Search — solution (TanStack Query)"
-        tooltip="This component uses TanStack Query for data fetching and useDeferredValue for debouncing — clean and maintainable!"
+        title="User search — TanStack Query solution"
+        tooltip="A data-fetching library can manage request status and caching, reducing repeated lifecycle code and keeping results associated with their requests."
       />
 
       <div className="pokemon-search-container">

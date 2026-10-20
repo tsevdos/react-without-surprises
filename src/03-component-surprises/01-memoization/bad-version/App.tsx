@@ -28,8 +28,8 @@ export default function App() {
     <>
       <Header
         sectionName="Component Surprises"
-        title="Memoization — bad example (React 18 and less, no compiler)"
-        tooltip="ProductRow is wrapped in React.memo, but the parent passes new props on every render. Click the counter or select a product and watch every row flash. Each click also freezes the UI because the filter reruns."
+        title="Memoization — bad example (React 18 and earlier)"
+        tooltip="Repeated calculations and unstable inputs can cause expensive work to run again when it is not needed. Watch how unrelated updates affect responsiveness."
       />
 
       <div className="memo-demo">

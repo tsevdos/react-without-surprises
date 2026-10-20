@@ -21,17 +21,17 @@ const useEffectSurprisesMenuItems: MenuItem[] = [
   { id: "comment-form-bad", label: "Message board — bad example" },
   { id: "comment-form-solution", label: "Message board — solution" },
   { id: "user-search-bad", label: "User search — bad example" },
-  { id: "user-search-solution", label: "User search — solution" },
-  { id: "user-search-solution-2", label: "User search — solution 2" },
+  { id: "user-search-solution", label: "User search — custom hook solution" },
+  { id: "user-search-solution-2", label: "User search — TanStack Query solution" },
   { id: "exercise-3", label: "Ticket desk — exercise 3" },
 ];
 
 const componentSurprisesMenuItems: MenuItem[] = [
-  { id: "memo-bad", label: "Memoization — bad example" },
+  { id: "memo-bad", label: "Memoization — bad example (React 18 and earlier)" },
   { id: "memo-manual", label: "Memoization — manual solution" },
   { id: "memo-compiler", label: "Memoization — React Compiler" },
-  { id: "performance-bad", label: "Rendering — bad example" },
-  { id: "performance-solution", label: "Rendering — solution" },
+  { id: "performance-bad", label: "Rendering priorities & layout — bad example" },
+  { id: "performance-solution", label: "Rendering priorities & layout — solution" },
   { id: "compound-components-bad-1", label: "Compound components — starting point" },
   { id: "compound-components-bad-2", label: "Compound components — composition" },
   { id: "compound-components-solution-1", label: "Compound components — solution" },

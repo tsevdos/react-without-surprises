@@ -46,7 +46,7 @@ export default function App() {
       <Header
         sectionName="State Management Surprises"
         title="Profile form — solution"
-        tooltip="The application is working as expected with improved code quality, optimized state management, and simplified UI."
+        tooltip="Keeping only source values in state makes the rest of the interface easier to derive and keeps related values consistent."
       />
       <div className="profile-container">
         <h2>Profile Form</h2>

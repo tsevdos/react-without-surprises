@@ -12,7 +12,7 @@ const App = () => {
       <Header
         sectionName="Component Surprises"
         title="Compound components — initial selection and callback"
-        tooltip="This version adds a default selected tab and a selection change callback while retaining the declarative Tabs and Tab structure."
+        tooltip="A flexible component API can offer useful configuration and notifications while preserving composable markup."
       />
       <Tabs defaultSelectedTab={1} onSelectTab={onSelectTab}>
         <Tabs.Tab title="Tab 1">

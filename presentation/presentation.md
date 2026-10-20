@@ -1,7 +1,7 @@
 ---
 marp: true
 theme: default
-footer: "[tsevdos.me](https://tsevdos.me/) · [@tsevdos](https://twitter.com/tsevdos)"
+footer: "[tsevdos.me](https://tsevdos.me/)"
 style: |
   section {
     font-size: 200%;
@@ -197,7 +197,7 @@ App → Header → HeaderActions → UserInfo → Profile
 
 - The effect runs **after** the interaction, so the cause and the result live in different places
 - The flow becomes indirect: event → state update → re-render → effect → more state updates
-- Extra renders, and effects that can re-run for unrelated reasons (dependency changes, Strict Mode)
+- Extra renders and effects that can re-run for unrelated reasons (dependency changes, Strict Mode)
 - The event handler, if there is one, tells only half the story
 
 ---
@@ -228,7 +228,7 @@ App → Header → HeaderActions → UserInfo → Profile
 
 # Effects Surprises
 
-## 🎬 Live demo: Data fetching
+## 🎬 Live demo: User search
 
 ---
 
@@ -252,7 +252,7 @@ App → Header → HeaderActions → UserInfo → Profile
 # ✅ The Fix
 
 - Extract repeated fetch logic into a custom hook
-- Use a query library such as **TanStack Query** when you need caching, retries, or request deduplication
+- Use a query library for client-side data when you need caching, retries, or request deduplication
 - This makes components easier to maintain and reason about
 
 ---
@@ -298,7 +298,8 @@ App → Header → HeaderActions → UserInfo → Profile
 # 🔍 Spot the problem
 
 - Expensive calculations can make the interface feel slow or unresponsive
-- New object and function props mean `React.memo` cannot skip rendering rows
+- Work may repeat on renders even when its inputs have not changed
+- New object and function references can prevent memoized components from skipping renders
 
 > Ask❓ "Did this value change, or did I just create a new reference?"
 
@@ -306,8 +307,9 @@ App → Header → HeaderActions → UserInfo → Profile
 
 # ❌ Why is it a problem
 
-- Don't block the main thread
-- Memoized components still render when their props appear different
+- Expensive synchronous work can block the main thread
+- Unnecessary work can make updates feel slower
+- Memoization relies on stable inputs; new references can look like changed props
 - Adding memoization everywhere can add complexity without improving performance
 
 ---
@@ -315,13 +317,13 @@ App → Header → HeaderActions → UserInfo → Profile
 # ✅ The Fix
 
 - Use the React Compiler when it is available and enabled
-- Otherwise, use performance tools such as `useMemo`, `useCallback`, or `React.memo` to address bottlenecks
+- Otherwise, use React APIs such as `useMemo`, `useCallback`, or `React.memo` to address bottlenecks
 
 ---
 
 # ✅ Why this is better
 
-- Expensive work and row renders can be skipped when inputs have not changed
+- `React.memo` can let a component skip a parent-driven render when its props are unchanged
 - Optimization stays focused on actual costs
 
 ---
@@ -334,13 +336,122 @@ App → Header → HeaderActions → UserInfo → Profile
 
 # Component Surprises
 
+## 🎬 Live demo: Rendering priorities & layout
+
+---
+
+# 🔍 Spot the problem
+
+- Expensive rendering can compete with typing and other urgent interactions
+- Large updates can make navigation feel unresponsive
+- Measuring layout after paint can cause visible shifts
+
+> Ask❓ "Which updates are urgent, and does this measurement need to happen before paint?"
+
+---
+
+# ❌ Why is it a problem
+
+- Long rendering work can block the main thread
+- Users may see stale results or wait for an interaction to finish
+- Post-paint layout corrections can cause visible movement
+- Layout effects used unnecessarily can delay painting
+
+---
+
+# ✅ The Fix
+
+- Use `useDeferredValue` when expensive content can update after urgent input
+- Use `useTransition` for non-urgent updates, and communicate when they are pending
+- Use `useLayoutEffect` only when a layout measurement must happen before paint
+
+---
+
+# ✅ Why this is better
+
+- Urgent interactions stay responsive while expensive updates catch up
+- Pending work can be communicated to users
+- Layout is measured before the user sees it, when necessary
+
+---
+
+# 🎯 Rule of thumb
+
+> Keep urgent updates urgent; defer expensive rendering, and measure layout before paint only when needed.
+
+---
+
+# Component Surprises
+
+## 🎬 Live demo: Compound components
+
+---
+
+# 🔍 Spot the problem - bad example 1
+
+- Every tab must match a fixed data shape (for example `tabTitle`, `title`, and `content`)
+- The component controls the markup for both navigation and content
+- Consumers can’t compose arbitrary JSX or rearrange the tab structure
+
+> Ask❓ "Can consumers customize the UI without changing the component itself?"
+
+---
+
+# 🔍 Spot the problem - bad example 2
+
+- Composition gives consumers more control over the markup
+- Components with complicated APIs (props, state, etc.) must be wired together correctly to make the tabs work
+- This makes the API difficult to use
+
+> Ask❓ "What should consumers control, and what should the component handle?"
+
+---
+
+# ❌ Why is it a problem
+
+- Fixed data shapes can limit how consumers structure and customize the UI
+- Repeated coordination logic makes components harder to compose
+- Exposing internal details can make APIs harder to use
+
+---
+
+# ✅ The Fix
+
+- Use compound components and keep the flexibility of the composition
+- Create a very simple API that will hide the complexity of the components
+- Give consumers useful control through a clear API
+
+---
+
+# ✅ Why this is better
+
+- A small API with flexible markup
+- Internal coordination logic stays inside the component
+- Easier to integrate and use consistently
+
+---
+
+# 🎯 Rule of thumb
+
+> Compound components let consumers control the markup while the parent coordinates shared behavior behind a clear API.
+
+---
+
+# Component Surprises
+
+## 🚀 Exercise: Product cards
+
+---
+
+# Component Surprises
+
 ## 🎬 Live demo: Suspense
 
 ---
 
 # 🔍 Spot the problem
 
-- Each widget handles loading status and potentially missing data
+- Each widget handles its own loading state and missing data
 - Loading and error handling are repeated around otherwise simple UI
 
 > Ask❓ "Can the loading boundary own this state instead?"
@@ -376,119 +487,12 @@ App → Header → HeaderActions → UserInfo → Profile
 
 ---
 
-# Component Surprises
-
-## 🎬 Live demo: Scheduling & layout
-
----
-
-# 🔍 Spot the problem
-
-- Search updates and view changes can block while expensive content renders
-- The popover may shift because its position is measured after paint
-
-> Ask❓ "Is this update urgent, and does this measurement affect layout?"
-
----
-
-# ❌ Why is it a problem
-
-- Slow work makes typing and navigation feel unresponsive
-- Post-paint measurement can show a visible layout shift
-- Using layout effects for non-visual work can block painting
-
----
-
-# ✅ The Fix
-
-- **Scheduling:** use `useDeferredValue` to let expensive search results lag behind input, and `useTransition` for non-urgent view changes
-- **Layout:** use `useLayoutEffect` only when a measurement must happen before paint
-
----
-
-# ✅ Why this is better
-
-- Urgent input stays responsive while results update
-- Pending view changes can be communicated to the user
-- The popover is positioned before it becomes visible
-
----
-
-# 🎯 Rule of thumb
-
-> Keep urgent updates urgent; defer expensive work and measure layout only when needed.
-
----
-
-# Component Surprises
-
-## 🎬 Live demo: Compound components
-
----
-
-# 🔍 Spot the problem - bad example 1
-
-- Every tab must match a fixed data shape (for example `tabTitle`, `title`, and `content`)
-- The component controls the markup for both navigation and content
-- Consumers can’t compose arbitrary JSX or rearrange the tab structure
-
-> Ask❓ "Can you change a tab’s markup without changing the Tabs component?"
-
----
-
-# 🔍 Spot the problem - bad example 2
-
-- Composition gives consumers more control over the markup
-- Components with complicated APIs (props, state, etc.) must be wired together correctly to make the tabs work
-- This makes the API difficult to use
-
-> Ask❓ "Which details should consumers compose, and which should Tabs coordinate?"
-
----
-
-# ❌ Why is it a problem
-
-- Markup and tab content are less flexible when driven by a fixed data shape
-- Call sites must repeat state wiring and visibility conditions
-- Internal coordination details leak into the component API
-
----
-
-# ✅ The Fix
-
-- Use compound components and keep the flexibility of the composition
-- Create a very simple API that will hide the complexity of the components
-- Provide more control to the external app, by exposing useful options and callbacks
-
-
----
-
-# ✅ Why this is better
-
-- A small API with flexible markup
-- Internal coordination logic stays inside the component
-- Easier to integrate and use consistently
-
----
-
-# 🎯 Rule of thumb
-
-> Compound components let consumers control the markup while the parent coordinates shared behavior behind a clear API.
-
----
-
-# Component Surprises
-
-## 🚀 Exercise: Product cards
-
----
-
 # 🔑 Key takeaways
 
-1. **Optimize with evidence** — use the compiler or targeted memoization for measured work
-2. **Choose clear boundaries** — Suspense and errors belong where the fallback should appear
-3. **Schedule intentionally** — urgent input, deferred rendering, and layout measurement are different jobs
-4. **Design for composition** — hide internal coordination behind a clear component API
+1. **Optimize with evidence** — use the compiler or targeted memoization to address measured costs
+2. **Keep interactions responsive** — let non-urgent rendering wait, and measure layout before paint only when needed
+3. **Design for composition** — give consumers control over structure while keeping coordination inside the component
+4. **Place clear boundaries** — handle loading and errors where the fallback should appear
 
 ---
 

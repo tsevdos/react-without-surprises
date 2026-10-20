@@ -77,8 +77,8 @@ export default function App() {
     <>
       <Header
         sectionName="State Management Surprises"
-        title="Todo app — bad version"
-        tooltip="The application is working as expected, but with many unnecessary re-renders, state updates and poor code quality."
+        title="Todo app — bad example"
+        tooltip="Storing values that can be derived creates redundant state and synchronization work. Compute what you can from the data you already have."
       />
       <div className="todo-app-container">
         <h2>My ToDos</h2>

@@ -79,8 +79,8 @@ export default function App() {
     <>
       <Header
         sectionName="Effects Surprises"
-        title="User Search — bad version"
-        tooltip="This component uses effects for data fetching, spreads the logic into component and makes the code hard to read."
+        title="User search — bad example"
+        tooltip="Managing remote data directly in a component mixes request lifecycle concerns with presentation and makes caching, retries, and stale results harder to handle."
       />
 
       <div className="pokemon-search-container">

@@ -45,7 +45,7 @@ export default function App() {
       <AppHeader
         sectionName="State Management Surprises"
         title="App layout — bad example"
-        tooltip="The application is working as expected, but we can clearly see the prop drilling problem we have with all the children components."
+        tooltip="Passing shared data through components that do not use it couples unrelated parts of the tree and makes changes harder to follow."
       />
       <div className={`app-layout ${theme}`}>
         <Header

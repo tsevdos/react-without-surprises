@@ -25,7 +25,7 @@ export default function App() {
       <Header
         sectionName="Component Surprises"
         title="Memoization — React Compiler solution (React 19)"
-        tooltip="No directive, no React.memo, no useMemo, no useCallback. The compiler caches the filter, the style, the callback and the rendered rows, so neither the counter nor selecting a product re-renders any row."
+        tooltip="Automatic optimization can reduce the need to manually stabilize values and components, while keeping performance work focused on meaningful costs."
       />
 
       <div className="memo-demo">

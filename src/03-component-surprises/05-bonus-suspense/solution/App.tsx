@@ -14,7 +14,7 @@ export default function App() {
       <Header
         sectionName="Component Surprises"
         title="User dashboard — solution (Suspense)"
-        tooltip="Widgets use useSuspenseQuery, so data is always defined. Loading is handled by <Suspense> and errors by an error boundary."
+        tooltip="Place loading and error handling at boundaries that match the experience, so content can focus on rendering ready data."
       />
 
       <div className="suspense-demo">

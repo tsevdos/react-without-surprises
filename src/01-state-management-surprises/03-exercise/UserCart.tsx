@@ -49,8 +49,8 @@ const UserCart = () => {
     <>
       <Header
         sectionName="State Management Surprises"
-        title="User Cart — exercise 1"
-        tooltip="The application is working as expected, but with many unnecessary re-renders, state updates and poor code quality. Can you simplify it?"
+        title="User cart — exercise 1"
+        tooltip="Values that can be calculated from existing state do not need their own state or synchronization effects. Simplify the cart by keeping a single source of truth."
       />
       <div className="user-cart-container">
         <div className="cart-layout">

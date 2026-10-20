@@ -56,8 +56,8 @@ export default function MessageBoard() {
     <>
       <Header
         sectionName="Effects Surprises"
-        title="Message board — bad version"
-        tooltip="This component uses effects to submit forms, reset state and log events (to a 3rd party). These are all useEffect anti-patterns that should be avoided."
+        title="Message board — bad example"
+        tooltip="Using effects to respond to a specific user action separates cause from behavior and can trigger extra updates. Keep interaction logic with the event that caused it."
       />
       <div className="comment-container">
         <div className="comment-layout">

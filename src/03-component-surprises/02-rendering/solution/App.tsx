@@ -1,4 +1,4 @@
-import { memo, useDeferredValue, useState, useTransition } from "react";
+import { useDeferredValue, useState, useTransition } from "react";
 import Header from "../../../components/Header/Header";
 import ProductResults from "../ProductResults";
 import AnalyticsPanel from "../AnalyticsPanel";
@@ -6,8 +6,6 @@ import SolutionDetailsPopover from "./DetailsPopover";
 import "../App.css";
 
 type Tab = "catalog" | "insights";
-
-const MemoizedProductResults = memo(ProductResults);
 
 export default function App() {
   const [query, setQuery] = useState("");
@@ -24,8 +22,8 @@ export default function App() {
     <>
       <Header
         sectionName="Component Surprises"
-        title="Scheduling & layout — solution"
-        tooltip="useDeferredValue lets search results lag behind the input, useTransition marks the Insights tab update as non-urgent, and useLayoutEffect positions the details popover before paint."
+        title="Rendering priorities & layout — solution"
+        tooltip="Prioritize urgent interactions, defer expensive updates when useful, and measure layout before paint only when necessary."
       />
 
       <div className="deferred-demo priority-demo">
@@ -69,10 +67,6 @@ export default function App() {
           </button>
         </div>
 
-        <p className="priority-pending" aria-live="polite">
-          {isPending ? "Preparing the selected view..." : ""}
-        </p>
-
         <div
           id="solution-catalog-panel"
           className="priority-panel"
@@ -80,9 +74,13 @@ export default function App() {
           aria-busy={isPending}
           aria-labelledby={activeTab === "catalog" ? "solution-catalog-tab" : "solution-insights-tab"}
         >
-          {activeTab === "catalog" ? (
+          {isPending ? (
+            <p className="priority-pending" aria-live="polite">
+              Preparing the selected view...
+            </p>
+          ) : activeTab === "catalog" ? (
             <div className={isSearchStale ? "deferred-list is-stale" : "deferred-list"}>
-              <MemoizedProductResults query={deferredQuery} />
+              <ProductResults query={deferredQuery} />
             </div>
           ) : (
             <AnalyticsPanel />

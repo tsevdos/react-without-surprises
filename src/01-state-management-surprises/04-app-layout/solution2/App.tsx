@@ -14,7 +14,7 @@ export default function App() {
       <AppHeader
         sectionName="State Management Surprises"
         title="App layout — Global state solution"
-        tooltip="The application uses Zustand stores to manage global state without prop drilling."
+        tooltip="A shared state layer can make commonly used data available across the application without threading it through unrelated components."
       />
       <div className={`app-layout ${theme}`}>
         <Header />

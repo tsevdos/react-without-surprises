@@ -18,7 +18,7 @@ const App = () => {
       <Header
         sectionName="Component Surprises"
         title="Compound components — composition"
-        tooltip="Component composition separates tab navigation and content, but each piece still needs state and selection props passed through."
+        tooltip="Composition gives consumers control over structure, but coordination becomes cumbersome when every part must be wired together manually."
       />
       <Tabs>
         <TabHeader>

@@ -15,8 +15,8 @@ export default function App() {
     <>
       <Header
         sectionName="Component Surprises"
-        title="Scheduling & layout — bad example"
-        tooltip="Search renders every result urgently, changing tabs synchronously renders a heavy panel, and the popover deliberately waits 250ms in useEffect before measuring so the post-paint jump is obvious."
+        title="Rendering priorities & layout — bad example"
+        tooltip="Expensive rendering can compete with urgent interactions, while delayed layout corrections can cause visible shifts."
       />
 
       <div className="deferred-demo priority-demo">

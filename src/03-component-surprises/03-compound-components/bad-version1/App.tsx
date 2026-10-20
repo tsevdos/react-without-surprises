@@ -31,7 +31,7 @@ const App = () => (
     <Header
       sectionName="Component Surprises"
       title="Compound components — starting point"
-      tooltip="The tabs are built as a single component that accepts data and renders both navigation and content."
+      tooltip="A fixed component API can limit how consumers arrange, customize, and compose the interface."
     />
     <Tabs tabs={tabsEntries} />
   </>

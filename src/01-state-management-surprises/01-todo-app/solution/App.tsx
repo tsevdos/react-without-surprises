@@ -35,7 +35,7 @@ export default function App() {
       <Header
         sectionName="State Management Surprises"
         title="Todo app — solution"
-        tooltip="The application is working as expected, with derived state and improved performance."
+        tooltip="Deriving values from the source data keeps them consistent and avoids extra state updates."
       />
       <div className="todo-app-container">
         <h2>My ToDos</h2>

@@ -64,7 +64,7 @@ export default function App() {
       <Header
         sectionName="State Management Surprises"
         title="Profile form — bad example"
-        tooltip="The application is working as expected but with poor code quality, unnecessary state updates and complicated UI."
+        tooltip="Keeping calculated values in separate state requires synchronization and can cause extra renders. Derive values that follow directly from user input."
       />
       <div className="profile-container">
         <h2>Profile Form</h2>

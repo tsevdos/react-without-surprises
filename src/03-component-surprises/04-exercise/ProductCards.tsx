@@ -25,7 +25,11 @@ export default function ProductCards() {
 
   return (
     <>
-      <Header sectionName="Component Surprises" title="Product cards — exercise 4" />
+      <Header
+        sectionName="Component Surprises"
+        title="Product cards — exercise 4"
+        tooltip="Related components often need shared state and behavior. Encapsulate that coordination so consumers can compose the interface without wiring every part together."
+      />
       <div className="product-cards-exercise">
         <div className="product-cards-grid">
           <ProductCard>

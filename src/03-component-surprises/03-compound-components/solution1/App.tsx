@@ -7,7 +7,7 @@ const App = () => (
     <Header
       sectionName="Component Surprises"
       title="Compound components — solution"
-      tooltip="A shared Tabs parent and its Tab subcomponent provide a declarative API for composing the tabs."
+      tooltip="A coordinated component family can keep shared behavior internal while allowing consumers to compose the interface."
     />
     <Tabs>
       <Tabs.Tab title="Tab 1">

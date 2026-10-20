@@ -23,7 +23,7 @@ const AppointmentBooking = () => {
       <Header
         sectionName="State Management Surprises"
         title="Appointment booking — exercise 2"
-        tooltip="The booking works, but its draft and update handler travel through several components. Find the props that are only being passed along, then simplify the data flow."
+        tooltip="When data and callbacks pass through components that do not use them, component APIs become harder to maintain. Simplify the flow while keeping ownership clear."
       />
       <BookingWorkspace draft={draft} updateDraft={updateDraft} onConfirm={confirmBooking} confirmed={confirmed} />
     </div>
