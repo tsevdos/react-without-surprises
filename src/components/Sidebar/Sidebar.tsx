@@ -30,15 +30,15 @@ const componentSurprisesMenuItems: MenuItem[] = [
   { id: "memo-bad", label: "Memoization — bad example" },
   { id: "memo-manual", label: "Memoization — manual solution" },
   { id: "memo-compiler", label: "Memoization — React Compiler" },
-  { id: "suspense-bad", label: "Suspense — bad example" },
-  { id: "suspense-solution", label: "Suspense — solution" },
-  { id: "priorities-layout-bad", label: "Scheduling & layout — bad example" },
-  { id: "priorities-layout-solution", label: "Scheduling & layout — solution" },
+  { id: "performance-bad", label: "Rendering — bad example" },
+  { id: "performance-solution", label: "Rendering — solution" },
   { id: "compound-components-bad-1", label: "Compound components — starting point" },
   { id: "compound-components-bad-2", label: "Compound components — composition" },
   { id: "compound-components-solution-1", label: "Compound components — solution" },
   { id: "compound-components-solution-2", label: "Compound components — initial selection and callback" },
   { id: "exercise-4", label: "Product cards — exercise 4" },
+  { id: "suspense-bad", label: "Suspense — bad example" },
+  { id: "suspense-solution", label: "Suspense — solution" },
 ];
 
 type SidebarProps = {

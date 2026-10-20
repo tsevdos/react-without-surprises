@@ -20,15 +20,15 @@ import TicketDesk from "./02-effects-surprises/03-exercise/TicketDesk";
 import MemoBad from "./03-component-surprises/01-memoization/bad-version/App";
 import MemoManual from "./03-component-surprises/01-memoization/manual-solution/App";
 import MemoCompiler from "./03-component-surprises/01-memoization/compiler-solution/App";
-import SuspenseBad from "./03-component-surprises/02-suspense/bad-version/App";
-import SuspenseSolution from "./03-component-surprises/02-suspense/solution/App";
-import PriorityLayoutBad from "./03-component-surprises/03-rendering/bad-version/App";
-import PriorityLayoutSolution from "./03-component-surprises/03-rendering/solution/App";
-import CompoundComponentsBad1 from "./03-component-surprises/04-compound-components/bad-version1/App";
-import CompoundComponentsBad2 from "./03-component-surprises/04-compound-components/bad-version2/App";
-import CompoundComponentsSolution1 from "./03-component-surprises/04-compound-components/solution1/App";
-import CompoundComponentsSolution2 from "./03-component-surprises/04-compound-components/solution2/App";
-import ProductCards from "./03-component-surprises/05-exercise/ProductCards";
+import RenderingBad from "./03-component-surprises/02-rendering/bad-version/App.tsx";
+import RenderingSolution from "./03-component-surprises/02-rendering/solution/App.tsx";
+import CompoundComponentsBad1 from "./03-component-surprises/03-compound-components/bad-version1/App";
+import CompoundComponentsBad2 from "./03-component-surprises/03-compound-components/bad-version2/App";
+import CompoundComponentsSolution1 from "./03-component-surprises/03-compound-components/solution1/App";
+import CompoundComponentsSolution2 from "./03-component-surprises/03-compound-components/solution2/App";
+import ProductCards from "./03-component-surprises/04-exercise/ProductCards";
+import SuspenseBad from "./03-component-surprises/05-bonus-suspense/bad-version/App.tsx";
+import SuspenseSolution from "./03-component-surprises/05-bonus-suspense/solution/App";
 
 const queryClient = new QueryClient();
 
@@ -62,15 +62,15 @@ export default function App() {
           {selectedMenu === "memo-bad" && <MemoBad />}
           {selectedMenu === "memo-manual" && <MemoManual />}
           {selectedMenu === "memo-compiler" && <MemoCompiler />}
-          {selectedMenu === "suspense-bad" && <SuspenseBad />}
-          {selectedMenu === "suspense-solution" && <SuspenseSolution />}
-          {selectedMenu === "priorities-layout-bad" && <PriorityLayoutBad />}
-          {selectedMenu === "priorities-layout-solution" && <PriorityLayoutSolution />}
+          {selectedMenu === "performance-bad" && <RenderingBad />}
+          {selectedMenu === "performance-solution" && <RenderingSolution />}
           {selectedMenu === "compound-components-bad-1" && <CompoundComponentsBad1 />}
           {selectedMenu === "compound-components-bad-2" && <CompoundComponentsBad2 />}
           {selectedMenu === "compound-components-solution-1" && <CompoundComponentsSolution1 />}
           {selectedMenu === "compound-components-solution-2" && <CompoundComponentsSolution2 />}
           {selectedMenu === "exercise-4" && <ProductCards />}
+          {selectedMenu === "suspense-bad" && <SuspenseBad />}
+          {selectedMenu === "suspense-solution" && <SuspenseSolution />}
         </div>
       </Layout>
     </QueryClientProvider>
